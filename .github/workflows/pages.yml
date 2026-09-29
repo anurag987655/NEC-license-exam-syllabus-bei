@@ -2,7 +2,7 @@ name: Publish study material
 
 on:
   push:
-    branches: [main, master, feature/improved-notes]
+    branches: [main, master]
   workflow_dispatch:
 
 permissions:
