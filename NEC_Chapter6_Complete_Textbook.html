@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEC Chapter 6 -- Electromagnetics, Signals, and Communication</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+    <style>
+/* ═══════════════════════════════════════════════════════════════
+   NEC License Exam Textbook — Stylesheet
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── CSS Custom Properties (Dark Mode Support) ─────────────── */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #f0f0f0;
+  --text-primary: #1a1a1a;
+  --text-secondary: #555555;
+  --text-muted: #888888;
+  --accent-primary: #1a237e;
+  --accent-secondary: #283593;
+  --accent-tertiary: #303f9f;
+  --accent-light: #c5cae9;
+  --accent-bg: #e8eaf6;
+  --border-color: #e0e0e0;
+  --border-light: #f0f0f0;
+  --table-stripe: #f5f5f5;
+  --table-hover: #e8eaf6;
+  --code-bg: #f5f5f5;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --transition: 0.2s ease;
+}
+
+/* ── Dark Mode ─────────────────────────────────────────────── */
+.dark-mode {
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #16213e;
+  --bg-tertiary: #0f3460;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --text-muted: #808080;
+  --accent-primary: #7c83ff;
+  --accent-secondary: #9fa8ff;
+  --accent-tertiary: #b0b8ff;
+  --accent-light: #3a3f6e;
+  --accent-bg: #1e2448;
+  --border-color: #2a2f5e;
+  --border-light: #252a52;
+  --table-stripe: #1e2245;
+  --table-hover: #252a55;
+  --code-bg: #1e2245;
+}
+
+/* ── Page Layout (Print) ───────────────────────────────────── */
+@page {
+  size: A4;
+  margin: 2cm 2cm 2.5cm 2cm;
+  @bottom-center {
+    content: "NEC License Exam — Page " counter(page);
+    font-size: 9pt;
+    color: #666;
+  }
+  @top-center {
+    content: "Nepal Engineering Council — License Exam Preparation";
+    font-size: 8pt;
+    color: #999;
+    border-bottom: 0.5pt solid #ccc;
+    padding-bottom: 3mm;
+  }
+}
+
+@page :first {
+  @top-center { content: none; }
+  @bottom-center { content: none; }
+}
+
+/* ── Base Typography ───────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 1.7;
+  color: var(--text-primary);
+  max-width: 100%;
+  background-color: var(--bg-primary);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+/* ── Title Page ────────────────────────────────────────────── */
+.title-page {
+  page-break-after: always;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  text-align: center;
+}
+
+.title-page h1 {
+  font-size: 28pt;
+  color: var(--accent-primary);
+  margin-bottom: 10px;
+  border: none;
+  letter-spacing: -0.5px;
+}
+
+.title-page h2 {
+  font-size: 18pt;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: 30px;
+  border: none;
+}
+
+.title-page .subtitle {
+  font-size: 14pt;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+}
+
+.title-page .exam-info {
+  font-size: 11pt;
+  color: var(--text-muted);
+  border: 2px solid var(--accent-primary);
+  padding: 20px 40px;
+  border-radius: var(--radius-lg);
+  margin-top: 30px;
+  background: var(--accent-bg);
+}
+
+/* ── Section Breaks ────────────────────────────────────────── */
+.section-break {
+  page-break-before: always;
+  border-top: 3px solid var(--accent-primary);
+  padding-top: 10px;
+  margin-top: 0;
+}
+
+/* ── Headings ──────────────────────────────────────────────── */
+h1 {
+  font-size: 22pt;
+  color: var(--accent-primary);
+  border-bottom: 3px solid var(--accent-primary);
+  padding-bottom: 8px;
+  margin-top: 30px;
+  page-break-after: avoid;
+  letter-spacing: -0.3px;
+}
+
+h2 {
+  font-size: 16pt;
+  color: var(--accent-secondary);
+  border-bottom: 1.5px solid var(--accent-light);
+  padding-bottom: 5px;
+  margin-top: 25px;
+  page-break-after: avoid;
+}
+
+h3 {
+  font-size: 13pt;
+  color: var(--accent-tertiary);
+  margin-top: 20px;
+  page-break-after: avoid;
+}
+
+h4 {
+  font-size: 11.5pt;
+  color: var(--accent-tertiary);
+  margin-top: 15px;
+  page-break-after: avoid;
+}
+
+/* ── Tables ────────────────────────────────────────────────── */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 15px 0;
+  font-size: 10pt;
+  page-break-inside: avoid;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+th {
+  background-color: var(--accent-primary);
+  color: white;
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 9.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+td {
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+tr:nth-child(even) {
+  background-color: var(--table-stripe);
+}
+
+tr:hover {
+  background-color: var(--table-hover);
+}
+
+/* ── Code / Diagrams ───────────────────────────────────────── */
+pre {
+  background-color: var(--code-bg);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--accent-primary);
+  padding: 14px 18px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
+  font-size: 9pt;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  page-break-inside: avoid;
+  border-radius: var(--radius-md);
+}
+
+code {
+  background-color: var(--code-bg);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
+  font-size: 9.5pt;
+  border: 1px solid var(--border-light);
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  border: none;
+}
+
+/* ── Blockquotes (Alerts) ──────────────────────────────────── */
+blockquote {
+  border-left: 4px solid var(--accent-primary);
+  background-color: var(--accent-bg);
+  padding: 14px 18px;
+  margin: 15px 0;
+  font-style: normal;
+  page-break-inside: avoid;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  line-height: 1.6;
+}
+
+/* ── Alert Boxes ───────────────────────────────────────────── */
+.alert-note {
+  border-left: 4px solid #2196f3;
+  background-color: #e3f2fd;
+}
+.alert-tip {
+  border-left: 4px solid #4caf50;
+  background-color: #e8f5e9;
+}
+.alert-important {
+  border-left: 4px solid #9c27b0;
+  background-color: #f3e5f5;
+}
+.alert-warning {
+  border-left: 4px solid #ff9800;
+  background-color: #fff3e0;
+}
+.alert-caution {
+  border-left: 4px solid #f44336;
+  background-color: #ffebee;
+}
+
+/* ── Math / Formula Styling ────────────────────────────────── */
+.math-block {
+  display: block;
+  text-align: center;
+  margin: 18px 0;
+  padding: 12px 16px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  overflow-x: auto;
+}
+
+.math-inline {
+  font-family: 'Latin Modern Math', 'Cambria Math', 'STIX Two Math', 'Times New Roman', serif;
+  font-style: italic;
+  padding: 0 2px;
+}
+
+/* MathJax / KaTeX overrides */
+mjx-container {
+  font-size: 105% !important;
+}
+
+mjx-container[display="true"] {
+  margin: 16px 0 !important;
+  text-align: center !important;
+}
+
+/* ── Lists ─────────────────────────────────────────────────── */
+ul, ol {
+  margin: 10px 0;
+  padding-left: 28px;
+}
+
+li {
+  margin: 4px 0;
+  line-height: 1.6;
+}
+
+li > ul, li > ol {
+  margin: 4px 0;
+}
+
+/* ── Horizontal Rule ───────────────────────────────────────── */
+hr {
+  border: none;
+  border-top: 2px solid var(--accent-light);
+  margin: 28px 0;
+}
+
+/* ── Emphasis ──────────────────────────────────────────────── */
+strong {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+em {
+  font-style: italic;
+}
+
+/* ── Page Break Utility ────────────────────────────────────── */
+.page-break {
+  page-break-after: always;
+}
+
+/* ── Exam Focus Boxes ──────────────────────────────────────── */
+.exam-trap {
+  background-color: #fff3e0;
+  border: 1px solid #ff9800;
+  border-left: 4px solid #e65100;
+  padding: 12px 18px;
+  margin: 12px 0;
+  border-radius: var(--radius-md);
+  page-break-inside: avoid;
+}
+
+.exam-trap::before {
+  content: "Exam Trap";
+  display: block;
+  font-weight: 700;
+  color: #e65100;
+  margin-bottom: 6px;
+  font-size: 10pt;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.engineering-intuition {
+  background-color: #e8f5e9;
+  border: 1px solid #4caf50;
+  border-left: 4px solid #2e7d32;
+  padding: 12px 18px;
+  margin: 12px 0;
+  border-radius: var(--radius-md);
+  page-break-inside: avoid;
+}
+
+.engineering-intuition::before {
+  content: "Engineering Intuition";
+  display: block;
+  font-weight: 700;
+  color: #2e7d32;
+  margin-bottom: 6px;
+  font-size: 10pt;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── Dark Mode Toggle Button ───────────────────────────────── */
+.dark-mode-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-primary);
+  background: var(--bg-primary);
+  color: var(--accent-primary);
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+}
+
+.dark-mode-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+/* ── Responsive Design ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  body {
+    font-size: 10pt;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 18pt;
+  }
+
+  h2 {
+    font-size: 14pt;
+  }
+
+  h3 {
+    font-size: 12pt;
+  }
+
+  table {
+    font-size: 8.5pt;
+    display: block;
+    overflow-x: auto;
+  }
+
+  th, td {
+    padding: 6px 10px;
+    min-width: 80px;
+  }
+
+  pre {
+    font-size: 8pt;
+    padding: 10px 12px;
+  }
+
+  .title-page h1 {
+    font-size: 22pt;
+  }
+
+  .title-page h2 {
+    font-size: 14pt;
+  }
+
+  .title-page .exam-info {
+    padding: 15px 20px;
+    margin: 15px;
+  }
+
+  .math-block {
+    padding: 8px 10px;
+    margin: 12px 0;
+  }
+
+  blockquote {
+    padding: 10px 14px;
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 9.5pt;
+  }
+
+  h1 {
+    font-size: 16pt;
+  }
+
+  h2 {
+    font-size: 13pt;
+  }
+
+  table {
+    font-size: 8pt;
+  }
+
+  .title-page {
+    min-height: 80vh;
+  }
+
+  .title-page h1 {
+    font-size: 18pt;
+  }
+}
+
+/* ── Print Overrides ───────────────────────────────────────── */
+@media print {
+  .dark-mode-toggle {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .dark-mode {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --text-primary: #1a1a1a;
+    --text-secondary: #555555;
+    --accent-primary: #1a237e;
+  }
+}
+
+/* ── Scrollbar Styling (Web) ───────────────────────────────── */
+@media screen {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent-light);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-primary);
+  }
+}
+
+/* ── Table of Contents ─────────────────────────────────────── */
+.toc-page {
+  page-break-after: always;
+}
+
+.toc-page h1 {
+  text-align: center;
+  border-bottom: none;
+}
+
+.toc-page ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.toc-page li {
+  padding: 4px 0;
+  border-bottom: 1px dotted var(--border-light);
+}
+
+.toc-page li:last-child {
+  border-bottom: none;
+}
+
+    </style>
+</head>
+<body>
+    
+    <div class="title-page">
+        <h1>CHAPTER 6</h1>
+        <h2>Electromagnetics, Signals, and Communication</h2>
+        <div class="subtitle">
+            <p><strong>Complete Textbook for NEC License Examination Preparation</strong></p>
+            <p>Electronics, Communication and Information Engineering (AEiE)</p>
+        </div>
+        <div class="exam-info">
+            <p><strong>Nepal Engineering Council</strong></p>
+            <p>Registration Examination</p>
+            <p>Code: AEiE06</p>
+            <br/>
+            <ul style="list-style:none;padding:0;text-align:left;display:inline-block;">
+                <li>Static Fields & Maxwell</li>
+<li>Wave Propagation</li>
+<li>Analog Communication</li>
+<li>Digital Communication</li>
+<li>Signals & Systems</li>
+<li>DSP</li>
+            </ul>
+        </div>
+    </div>
+    
+    
+    <div class="toc-page">
+    <h1>TABLE OF CONTENTS</h1>
+    <hr/>
+    <h2>Chapter 6: Electromagnetics, Signals, and Communication</h2>
+    <ul style="list-style:none;padding-left:0;">
+        <li><strong>1.</strong> Static Fields & Maxwell</li>
+<li><strong>2.</strong> Wave Propagation</li>
+<li><strong>3.</strong> Analog Communication</li>
+<li><strong>4.</strong> Digital Communication</li>
+<li><strong>5.</strong> Signals & Systems</li>
+<li><strong>6.</strong> DSP</li>
+    </ul>
+    </div>
+    
+    <Section 6.1: Electric Field and Magnetic Field (AEiE0601)>
+## 1. Introduction
+Electromagnetics is the foundation of communication systems and electronic engineering. This section covers static electric and magnetic fields, their properties, interactions with matter, and the boundary conditions governing these fields across different media. A strong grasp of these fundamental concepts is crucial for the NEC exam, as they form the basis for understanding wave propagation and antennas.
+
+## 2. Basic Concept
+Electric and magnetic fields are spatial distributions of forces exerted by stationary and moving charges, respectively. 
+
+> [!NOTE] Definition
+> **Electric Field Intensity (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D404;</mi></mrow></math>)**: The force per unit charge experienced by a stationary positive test charge in space. Unit: Volts per meter (V/m) or Newtons per Coulomb (N/C).
+> **Magnetic Field Intensity (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D407;</mi></mrow></math>)**: The magnetic force field generated by moving charges (current). Unit: Amperes per meter (A/m).
+
+## 3. Electric Field and Flux Density
+An electric charge produces an electric field in its surroundings. According to Coulomb's law, the electric field <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D404;</mi></mrow></math> due to a point charge <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>Q</mi></mrow></math> at a distance <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>r</mi></mrow></math> is:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D404;</mi><mo>&#x0003D;</mo><mfrac><mrow><mi>Q</mi></mrow><mrow><mn>4</mn><mi>&#x003C0;</mi><msub><mi>&#x003B5;</mi><mn>0</mn></msub><msup><mi>r</mi><mn>2</mn></msup></mrow></mfrac><msub><mi>&#x1D41A;</mi><mi>r</mi></msub></mrow></math></div>
+where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003B5;</mi><mn>0</mn></msub><mo>&#x02248;</mo><mn>8.854</mn><mo>&#x000D7;</mo><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>12</mn></mrow></msup></mrow></math> F/m is the permittivity of free space.
+
+**Electric Flux Density (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D403;</mi></mrow></math>)**, also called electric displacement, is independent of the medium and relates to <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D404;</mi></mrow></math> by:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D403;</mi><mo>&#x0003D;</mo><mi>&#x003B5;</mi><mi>&#x1D404;</mi></mrow></math></div>
+where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B5;</mi><mo>&#x0003D;</mo><msub><mi>&#x003B5;</mi><mn>0</mn></msub><msub><mi>&#x003B5;</mi><mi>r</mi></msub></mrow></math> is the permittivity of the medium. Unit of <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D403;</mi></mrow></math> is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>C</mi><mo>&#x0002F;</mo><msup><mi>m</mi><mn>2</mn></msup></mrow></math>.
+
+## 4. Significance of Divergence and Divergence Theorem
+The divergence of a vector field represents the net outward flux per unit volume at a point.
+
+> [!NOTE] Definition
+> **Divergence of <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D403;</mi></mrow></math>**: Mathematically, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02207;</mo><mo>&#x000B7;</mo><mi>&#x1D403;</mi><mo>&#x0003D;</mo><msub><mi>&#x003C1;</mi><mi>v</mi></msub></mrow></math>, where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C1;</mi><mi>v</mi></msub></mrow></math> is the volume charge density (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>C</mi><mo>&#x0002F;</mo><msup><mi>m</mi><mn>3</mn></msup></mrow></math>). This is the point form of Gauss's Law.
+
+**Physical Significance**: A positive divergence indicates a source of flux (positive charge), a negative divergence indicates a sink (negative charge), and zero divergence indicates no net charge at that point (solenoidal field).
+
+**Divergence Theorem**:
+It relates the volume integral of the divergence of a vector field to the closed surface integral of the vector field.
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mo>&#x0222E;</mo><mi>S</mi></msub><mi>&#x1D403;</mi><mo>&#x000B7;</mo><mi>d</mi><mi>&#x1D412;</mi><mo>&#x0003D;</mo><msub><mo>&#x0222B;</mo><mi>v</mi></msub><mo stretchy="false">&#x00028;</mo><mo>&#x02207;</mo><mo>&#x000B7;</mo><mi>&#x1D403;</mi><mo stretchy="false">&#x00029;</mo><mi>d</mi><mi>v</mi><mo>&#x0003D;</mo><msub><mi>Q</mi><mrow><mi>e</mi><mi>n</mi><mi>c</mi><mi>l</mi><mi>o</mi><mi>s</mi><mi>e</mi><mi>d</mi></mrow></msub></mrow></math></div>
+This theorem is essential for converting surface integrals to volume integrals and vice versa.
+
+## 5. Electric Potential and Potential Gradient
+**Electric Potential (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>V</mi></mrow></math>)**: The work done per unit charge in bringing a positive test charge from infinity to a point in the electric field.
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>V</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><msubsup><mo>&#x0222B;</mo><mrow><mo>&#x0221E;</mo></mrow><mi>r</mi></msubsup><mi>&#x1D404;</mi><mo>&#x000B7;</mo><mi>d</mi><mi>&#x1D425;</mi></mrow></math></div>
+Unit: Volts (V) or Joules/Coulomb (J/C).
+
+**Potential Gradient**: The electric field is the negative gradient of the electric potential.
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D404;</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mo>&#x02207;</mo><mi>V</mi></mrow></math></div>
+This implies that <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D404;</mi></mrow></math> points in the direction of maximum decrease of <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>V</mi></mrow></math>.
+
+## 6. Energy Density in Electrostatic Field
+To assemble a system of charges, work must be done. This work is stored as electrostatic energy.
+The total energy <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>W</mi><mi>E</mi></msub></mrow></math> in a continuous charge distribution is:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>W</mi><mi>E</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><msub><mo>&#x0222B;</mo><mi>v</mi></msub><mi>&#x1D403;</mi><mo>&#x000B7;</mo><mi>&#x1D404;</mi><mi>d</mi><mi>v</mi><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><msub><mo>&#x0222B;</mo><mi>v</mi></msub><mi>&#x003B5;</mi><mo stretchy="false">&#x0007C;</mo><mi>&#x1D404;</mi><msup><mo stretchy="false">&#x0007C;</mo><mn>2</mn></msup><mi>d</mi><mi>v</mi></mrow></math></div>
+**Energy Density (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>w</mi><mi>E</mi></msub></mrow></math>)**: The energy per unit volume.
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>w</mi><mi>E</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi>&#x1D403;</mi><mo>&#x000B7;</mo><mi>&#x1D404;</mi><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi>&#x003B5;</mi><mo stretchy="false">&#x0007C;</mo><mi>&#x1D404;</mi><msup><mo stretchy="false">&#x0007C;</mo><mn>2</mn></msup></mrow></math></div>
+Unit: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>J</mi><mo>&#x0002F;</mo><msup><mi>m</mi><mn>3</mn></msup></mrow></math>.
+
+## 7. Free and Bound Charges, Polarization, Relative Permittivity
+- **Free Charges**: Electrons that can move freely through a material (e.g., in conductors).
+- **Bound Charges**: Charges that are bound to atoms or molecules and cannot move freely (e.g., in dielectrics).
+
+**Polarization (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D40F;</mi></mrow></math>)**: When a dielectric material is placed in an external electric field, the bound charges shift slightly, creating microscopic dipoles. Polarization is the dipole moment per unit volume.
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D40F;</mi><mo>&#x0003D;</mo><msub><mo>lim</mo><mrow><mi>&#x00394;</mi><mi>v</mi><mo>&#x02192;</mo><mn>0</mn></mrow></msub><mfrac><mrow><mo>&#x02211;</mo><msub><mi>&#x1D429;</mi><mi>k</mi></msub></mrow><mrow><mi>&#x00394;</mi><mi>v</mi></mrow></mfrac></mrow></math></div>
+Unit: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>C</mi><mo>&#x0002F;</mo><msup><mi>m</mi><mn>2</mn></msup></mrow></math>.
+
+The relationship between <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D403;</mi></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D404;</mi></mrow></math>, and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D40F;</mi></mrow></math> in a dielectric is:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D403;</mi><mo>&#x0003D;</mo><msub><mi>&#x003B5;</mi><mn>0</mn></msub><mi>&#x1D404;</mi><mo>&#x0002B;</mo><mi>&#x1D40F;</mi></mrow></math></div>
+For linear, isotropic dielectrics, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D40F;</mi><mo>&#x0003D;</mo><msub><mi>&#x003C7;</mi><mi>e</mi></msub><msub><mi>&#x003B5;</mi><mn>0</mn></msub><mi>&#x1D404;</mi></mrow></math>, where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C7;</mi><mi>e</mi></msub></mrow></math> is the electric susceptibility.
+Therefore, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D403;</mi><mo>&#x0003D;</mo><msub><mi>&#x003B5;</mi><mn>0</mn></msub><mo stretchy="false">&#x00028;</mo><mn>1</mn><mo>&#x0002B;</mo><msub><mi>&#x003C7;</mi><mi>e</mi></msub><mo stretchy="false">&#x00029;</mo><mi>&#x1D404;</mi><mo>&#x0003D;</mo><msub><mi>&#x003B5;</mi><mn>0</mn></msub><msub><mi>&#x003B5;</mi><mi>r</mi></msub><mi>&#x1D404;</mi><mo>&#x0003D;</mo><mi>&#x003B5;</mi><mi>&#x1D404;</mi></mrow></math>.
+**Relative Permittivity (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003B5;</mi><mi>r</mi></msub></mrow></math>)**: Also called the dielectric constant. <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003B5;</mi><mi>r</mi></msub><mo>&#x0003D;</mo><mn>1</mn><mo>&#x0002B;</mo><msub><mi>&#x003C7;</mi><mi>e</mi></msub></mrow></math>.
+
+## 8. Electric Dipole
+An electric dipole consists of two equal and opposite charges (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0002B;</mo><mi>Q</mi></mrow></math> and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>Q</mi></mrow></math>) separated by a small distance <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D41D;</mi></mrow></math>.
+**Dipole Moment (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D429;</mi></mrow></math>)**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D429;</mi><mo>&#x0003D;</mo><mi>Q</mi><mi>&#x1D41D;</mi></mrow></math>. It points from <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>Q</mi></mrow></math> to <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0002B;</mo><mi>Q</mi></mrow></math>.
+
+The electric potential <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>V</mi></mrow></math> at a distant point <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>r</mi></mrow></math> due to a dipole is:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>V</mi><mo>&#x0003D;</mo><mfrac><mrow><mi>&#x1D429;</mi><mo>&#x000B7;</mo><msub><mi>&#x1D41A;</mi><mi>r</mi></msub></mrow><mrow><mn>4</mn><mi>&#x003C0;</mi><msub><mi>&#x003B5;</mi><mn>0</mn></msub><msup><mi>r</mi><mn>2</mn></msup></mrow></mfrac><mo>&#x0003D;</mo><mfrac><mrow><mi>p</mi><mi>cos</mi><mi>&#x003B8;</mi></mrow><mrow><mn>4</mn><mi>&#x003C0;</mi><msub><mi>&#x003B5;</mi><mn>0</mn></msub><msup><mi>r</mi><mn>2</mn></msup></mrow></mfrac></mrow></math></div>
+
+## 9. Electric Boundary Conditions
+When an electric field crosses the interface between two different media (e.g., dielectric 1 and dielectric 2), the field vectors satisfy certain conditions.
+Let <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x1D404;</mi><mi>t</mi></msub></mrow></math> and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x1D403;</mi><mi>t</mi></msub></mrow></math> be tangential components, and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x1D404;</mi><mi>n</mi></msub></mrow></math> and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x1D403;</mi><mi>n</mi></msub></mrow></math> be normal components.
+
+1. **Tangential Components**: The tangential component of the electric field intensity is continuous across the boundary.
+   <div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>E</mi><mrow><mi>t</mi><mn>1</mn></mrow></msub><mo>&#x0003D;</mo><msub><mi>E</mi><mrow><mi>t</mi><mn>2</mn></mrow></msub></mrow></math></div>
+   <div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mfrac><mrow><msub><mi>D</mi><mrow><mi>t</mi><mn>1</mn></mrow></msub></mrow><mrow><msub><mi>&#x003B5;</mi><mn>1</mn></msub></mrow></mfrac><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>D</mi><mrow><mi>t</mi><mn>2</mn></mrow></msub></mrow><mrow><msub><mi>&#x003B5;</mi><mn>2</mn></msub></mrow></mfrac></mrow></math></div>
+2. **Normal Components**: The normal component of the electric flux density is discontinuous by the surface charge density (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C1;</mi><mi>s</mi></msub></mrow></math>) at the boundary.
+   <div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>D</mi><mrow><mi>n</mi><mn>1</mn></mrow></msub><mo>&#x02212;</mo><msub><mi>D</mi><mrow><mi>n</mi><mn>2</mn></mrow></msub><mo>&#x0003D;</mo><msub><mi>&#x003C1;</mi><mi>s</mi></msub></mrow></math></div>
+   If the boundary is charge-free (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C1;</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>), then <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>D</mi><mrow><mi>n</mi><mn>1</mn></mrow></msub><mo>&#x0003D;</mo><msub><mi>D</mi><mrow><mi>n</mi><mn>2</mn></mrow></msub></mrow></math>.
+
+## 10. Magnetic Field Intensity and Flux Density
+- **Magnetic Field Intensity (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D407;</mi></mrow></math>)**: Derived from the Biot-Savart Law or Ampere's Circuital Law.
+  <div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mo>&#x0222E;</mo><mi>L</mi></msub><mi>&#x1D407;</mi><mo>&#x000B7;</mo><mi>d</mi><mi>&#x1D425;</mi><mo>&#x0003D;</mo><msub><mi>I</mi><mrow><mi>e</mi><mi>n</mi><mi>c</mi><mi>l</mi><mi>o</mi><mi>s</mi><mi>e</mi><mi>d</mi></mrow></msub></mrow></math></div>
+- **Magnetic Flux Density (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D401;</mi></mrow></math>)**: Related to <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D407;</mi></mrow></math> by the permeability of the medium.
+  <div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D401;</mi><mo>&#x0003D;</mo><mi>&#x003BC;</mi><mi>&#x1D407;</mi></mrow></math></div>
+  where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BC;</mi><mo>&#x0003D;</mo><msub><mi>&#x003BC;</mi><mn>0</mn></msub><msub><mi>&#x003BC;</mi><mi>r</mi></msub></mrow></math>. <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003BC;</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>4</mn><mi>&#x003C0;</mi><mo>&#x000D7;</mo><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>7</mn></mrow></msup></mrow></math> H/m. Unit of <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D401;</mi></mrow></math> is Tesla (T) or <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>W</mi><mi>b</mi><mo>&#x0002F;</mo><msup><mi>m</mi><mn>2</mn></msup></mrow></math>.
+
+## 11. Magnetic Force and Torque
+**Magnetic Force on a Moving Charge**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x1D405;</mi><mi>m</mi></msub><mo>&#x0003D;</mo><mi>Q</mi><mo stretchy="false">&#x00028;</mo><mi>&#x1D42E;</mi><mo>&#x000D7;</mo><mi>&#x1D401;</mi><mo stretchy="false">&#x00029;</mo></mrow></math>
+**Lorentz Force Equation** (total force): <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D405;</mi><mo>&#x0003D;</mo><mi>Q</mi><mo stretchy="false">&#x00028;</mo><mi>&#x1D404;</mi><mo>&#x0002B;</mo><mi>&#x1D42E;</mi><mo>&#x000D7;</mo><mi>&#x1D401;</mi><mo stretchy="false">&#x00029;</mo></mrow></math>
+**Magnetic Force on a Current Element**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>d</mi><mi>&#x1D405;</mi><mo>&#x0003D;</mo><mi>I</mi><mi>d</mi><mi>&#x1D425;</mi><mo>&#x000D7;</mo><mi>&#x1D401;</mi></mrow></math>
+
+**Magnetic Torque (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D413;</mi></mrow></math>)**: On a planar current loop of area <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>S</mi></mrow></math> in a uniform magnetic field <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D401;</mi></mrow></math>:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D413;</mi><mo>&#x0003D;</mo><mi>&#x1D426;</mi><mo>&#x000D7;</mo><mi>&#x1D401;</mi></mrow></math></div>
+
+## 12. Magnetic Moment and Magnetic Dipole
+**Magnetic Dipole Moment (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D426;</mi></mrow></math>)**: A small current loop of area <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>S</mi></mrow></math> carrying current <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>I</mi></mrow></math> acts as a magnetic dipole.
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D426;</mi><mo>&#x0003D;</mo><mi>I</mi><mi>S</mi><msub><mi>&#x1D41A;</mi><mi>n</mi></msub></mrow></math></div>
+Unit: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo>&#x000B7;</mo><msup><mi>m</mi><mn>2</mn></msup></mrow></math>. <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x1D41A;</mi><mi>n</mi></msub></mrow></math> is the unit normal vector determined by the right-hand rule.
+
+**Magnetization (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D40C;</mi></mrow></math>)**: The magnetic dipole moment per unit volume.
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D40C;</mi><mo>&#x0003D;</mo><msub><mo>lim</mo><mrow><mi>&#x00394;</mi><mi>v</mi><mo>&#x02192;</mo><mn>0</mn></mrow></msub><mfrac><mrow><mo>&#x02211;</mo><msub><mi>&#x1D426;</mi><mi>k</mi></msub></mrow><mrow><mi>&#x00394;</mi><mi>v</mi></mrow></mfrac></mrow></math></div>
+Unit: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo>&#x0002F;</mo><mi>m</mi></mrow></math>.
+The relationship between <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D401;</mi></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D407;</mi></mrow></math>, and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D40C;</mi></mrow></math> is:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D401;</mi><mo>&#x0003D;</mo><msub><mi>&#x003BC;</mi><mn>0</mn></msub><mo stretchy="false">&#x00028;</mo><mi>&#x1D407;</mi><mo>&#x0002B;</mo><mi>&#x1D40C;</mi><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+For linear materials, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D40C;</mi><mo>&#x0003D;</mo><msub><mi>&#x003C7;</mi><mi>m</mi></msub><mi>&#x1D407;</mi></mrow></math>, where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C7;</mi><mi>m</mi></msub></mrow></math> is the magnetic susceptibility. Thus, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003BC;</mi><mi>r</mi></msub><mo>&#x0003D;</mo><mn>1</mn><mo>&#x0002B;</mo><msub><mi>&#x003C7;</mi><mi>m</mi></msub></mrow></math>.
+
+## 13. Magnetic Boundary Conditions
+Similar to electric fields, when a magnetic field crosses the interface between two media:
+1. **Normal Components**: The normal component of the magnetic flux density is continuous across the boundary.
+   <div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>B</mi><mrow><mi>n</mi><mn>1</mn></mrow></msub><mo>&#x0003D;</mo><msub><mi>B</mi><mrow><mi>n</mi><mn>2</mn></mrow></msub></mrow></math></div>
+   <div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003BC;</mi><mn>1</mn></msub><msub><mi>H</mi><mrow><mi>n</mi><mn>1</mn></mrow></msub><mo>&#x0003D;</mo><msub><mi>&#x003BC;</mi><mn>2</mn></msub><msub><mi>H</mi><mrow><mi>n</mi><mn>2</mn></mrow></msub></mrow></math></div>
+2. **Tangential Components**: The tangential component of the magnetic field intensity is discontinuous by the surface current density (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D40A;</mi></mrow></math>).
+   <div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>H</mi><mrow><mi>t</mi><mn>1</mn></mrow></msub><mo>&#x02212;</mo><msub><mi>H</mi><mrow><mi>t</mi><mn>2</mn></mrow></msub><mo>&#x0003D;</mo><mi>K</mi></mrow></math></div>
+   If the boundary is current-free (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>K</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>), then <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>H</mi><mrow><mi>t</mi><mn>1</mn></mrow></msub><mo>&#x0003D;</mo><msub><mi>H</mi><mrow><mi>t</mi><mn>2</mn></mrow></msub></mrow></math>.
+
+---
+
+## Comparison Table: Electric vs Magnetic Fields
+
+| Property | Electrostatic Field | Magnetostatic Field |
+| :--- | :--- | :--- |
+| **Source** | Stationary charges (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>Q</mi></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C1;</mi><mi>v</mi></msub></mrow></math>) | Steady currents (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>I</mi></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D409;</mi></mrow></math>) |
+| **Field Intensity** | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D404;</mi></mrow></math> (V/m) | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D407;</mi></mrow></math> (A/m) |
+| **Flux Density** | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D403;</mi><mo>&#x0003D;</mo><mi>&#x003B5;</mi><mi>&#x1D404;</mi></mrow></math> (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>C</mi><mo>&#x0002F;</mo><msup><mi>m</mi><mn>2</mn></msup></mrow></math>) | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D401;</mi><mo>&#x0003D;</mo><mi>&#x003BC;</mi><mi>&#x1D407;</mi></mrow></math> (Tesla) |
+| **Gauss's Law** | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02207;</mo><mo>&#x000B7;</mo><mi>&#x1D403;</mi><mo>&#x0003D;</mo><msub><mi>&#x003C1;</mi><mi>v</mi></msub></mrow></math> | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02207;</mo><mo>&#x000B7;</mo><mi>&#x1D401;</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> |
+| **Circuital Law** | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02207;</mo><mo>&#x000D7;</mo><mi>&#x1D404;</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> (Conservative) | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02207;</mo><mo>&#x000D7;</mo><mi>&#x1D407;</mi><mo>&#x0003D;</mo><mi>&#x1D409;</mi></mrow></math> (Ampere's) |
+| **Force** | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D405;</mi><mo>&#x0003D;</mo><mi>Q</mi><mi>&#x1D404;</mi></mrow></math> | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D405;</mi><mo>&#x0003D;</mo><mi>Q</mi><mo stretchy="false">&#x00028;</mo><mi>&#x1D42E;</mi><mo>&#x000D7;</mo><mi>&#x1D401;</mi><mo stretchy="false">&#x00029;</mo></mrow></math> |
+| **Energy Density** | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>w</mi><mi>E</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi>&#x1D403;</mi><mo>&#x000B7;</mo><mi>&#x1D404;</mi></mrow></math> | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>w</mi><mi>M</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi>&#x1D401;</mi><mo>&#x000B7;</mo><mi>&#x1D407;</mi></mrow></math> |
+
+---
+
+## Worked Example
+
+**Example 1**: Given the electric potential <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>V</mi><mo>&#x0003D;</mo><mn>10</mn><msup><mi>x</mi><mn>2</mn></msup><mi>y</mi><mo>&#x0002B;</mo><mn>5</mn><mi>z</mi></mrow></math> Volts, find the electric field <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D404;</mi></mrow></math> at the point (1, 2, -1).
+**Solution**:
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D404;</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mo>&#x02207;</mo><mi>V</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mfrac><mrow><mo>&#x02202;</mo><mi>V</mi></mrow><mrow><mo>&#x02202;</mo><mi>x</mi></mrow></mfrac><msub><mi>&#x1D41A;</mi><mi>x</mi></msub><mo>&#x0002B;</mo><mfrac><mrow><mo>&#x02202;</mo><mi>V</mi></mrow><mrow><mo>&#x02202;</mo><mi>y</mi></mrow></mfrac><msub><mi>&#x1D41A;</mi><mi>y</mi></msub><mo>&#x0002B;</mo><mfrac><mrow><mo>&#x02202;</mo><mi>V</mi></mrow><mrow><mo>&#x02202;</mo><mi>z</mi></mrow></mfrac><msub><mi>&#x1D41A;</mi><mi>z</mi></msub><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow></mrow></math>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mfrac><mrow><mo>&#x02202;</mo><mi>V</mi></mrow><mrow><mo>&#x02202;</mo><mi>x</mi></mrow></mfrac><mo>&#x0003D;</mo><mn>20</mn><mi>x</mi><mi>y</mi></mrow></math>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mfrac><mrow><mo>&#x02202;</mo><mi>V</mi></mrow><mrow><mo>&#x02202;</mo><mi>y</mi></mrow></mfrac><mo>&#x0003D;</mo><mn>10</mn><msup><mi>x</mi><mn>2</mn></msup></mrow></math>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mfrac><mrow><mo>&#x02202;</mo><mi>V</mi></mrow><mrow><mo>&#x02202;</mo><mi>z</mi></mrow></mfrac><mo>&#x0003D;</mo><mn>5</mn></mrow></math>
+So, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D404;</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>20</mn><mi>x</mi><mi>y</mi><msub><mi>&#x1D41A;</mi><mi>x</mi></msub><mo>&#x02212;</mo><mn>10</mn><msup><mi>x</mi><mn>2</mn></msup><msub><mi>&#x1D41A;</mi><mi>y</mi></msub><mo>&#x02212;</mo><mn>5</mn><msub><mi>&#x1D41A;</mi><mi>z</mi></msub></mrow></math>.
+At point (1, 2, -1):
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D404;</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>20</mn><mo stretchy="false">&#x00028;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo><msub><mi>&#x1D41A;</mi><mi>x</mi></msub><mo>&#x02212;</mo><mn>10</mn><mo stretchy="false">&#x00028;</mo><mn>1</mn><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup><msub><mi>&#x1D41A;</mi><mi>y</mi></msub><mo>&#x02212;</mo><mn>5</mn><msub><mi>&#x1D41A;</mi><mi>z</mi></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>40</mn><msub><mi>&#x1D41A;</mi><mi>x</mi></msub><mo>&#x02212;</mo><mn>10</mn><msub><mi>&#x1D41A;</mi><mi>y</mi></msub><mo>&#x02212;</mo><mn>5</mn><msub><mi>&#x1D41A;</mi><mi>z</mi></msub></mrow></math> V/m.
+
+---
+
+## Common Mistakes / Exam Tips
+
+> [!WARNING]
+> - Mixing up permittivity (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B5;</mi></mrow></math>) and permeability (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BC;</mi></mrow></math>). Permittivity is for electric fields, permeability is for magnetic fields.
+> - Forgetting the negative sign in the potential gradient equation (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D404;</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mo>&#x02207;</mo><mi>V</mi></mrow></math>).
+> - Assuming tangential <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D407;</mi></mrow></math> is always continuous; it is only continuous if the surface current <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D40A;</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>.
+
+> [!TIP]
+> - Always remember the point forms (differential forms) and integral forms of Maxwell's equations for static fields. Divergence relates to sources/sinks, Curl relates to circulation/rotation.
+> - Magnetic monopoles do not exist, which is why <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02207;</mo><mo>&#x000B7;</mo><mi>&#x1D401;</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>. This is a very frequent exam question.
+
+---
+
+## Quick Reference / Formula Summary
+
+> [!IMPORTANT]
+> - **Divergence Theorem**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mo>&#x0222E;</mo><mi>S</mi></msub><mi>&#x1D400;</mi><mo>&#x000B7;</mo><mi>d</mi><mi>&#x1D412;</mi><mo>&#x0003D;</mo><msub><mo>&#x0222B;</mo><mi>v</mi></msub><mo stretchy="false">&#x00028;</mo><mo>&#x02207;</mo><mo>&#x000B7;</mo><mi>&#x1D400;</mi><mo stretchy="false">&#x00029;</mo><mi>d</mi><mi>v</mi></mrow></math>
+> - **Stokes' Theorem**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mo>&#x0222E;</mo><mi>L</mi></msub><mi>&#x1D400;</mi><mo>&#x000B7;</mo><mi>d</mi><mi>&#x1D425;</mi><mo>&#x0003D;</mo><msub><mo>&#x0222B;</mo><mi>S</mi></msub><mo stretchy="false">&#x00028;</mo><mo>&#x02207;</mo><mo>&#x000D7;</mo><mi>&#x1D400;</mi><mo stretchy="false">&#x00029;</mo><mo>&#x000B7;</mo><mi>d</mi><mi>&#x1D412;</mi></mrow></math>
+> - **Boundary Conditions (Charge/Current free)**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>E</mi><mrow><mi>t</mi><mn>1</mn></mrow></msub><mo>&#x0003D;</mo><msub><mi>E</mi><mrow><mi>t</mi><mn>2</mn></mrow></msub></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>D</mi><mrow><mi>n</mi><mn>1</mn></mrow></msub><mo>&#x0003D;</mo><msub><mi>D</mi><mrow><mi>n</mi><mn>2</mn></mrow></msub></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>H</mi><mrow><mi>t</mi><mn>1</mn></mrow></msub><mo>&#x0003D;</mo><msub><mi>H</mi><mrow><mi>t</mi><mn>2</mn></mrow></msub></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>B</mi><mrow><mi>n</mi><mn>1</mn></mrow></msub><mo>&#x0003D;</mo><msub><mi>B</mi><mrow><mi>n</mi><mn>2</mn></mrow></msub></mrow></math>.
+
+---
+
+## Practice Problems
+
+1. Find the volume charge density <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C1;</mi><mi>v</mi></msub></mrow></math> if <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D403;</mi><mo>&#x0003D;</mo><mn>2</mn><mi>x</mi><mi>y</mi><msub><mi>&#x1D41A;</mi><mi>x</mi></msub><mo>&#x0002B;</mo><msup><mi>x</mi><mn>2</mn></msup><msub><mi>&#x1D41A;</mi><mi>y</mi></msub><mo>&#x0002B;</mo><mi>z</mi><msub><mi>&#x1D41A;</mi><mi>z</mi></msub></mrow></math> <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>C</mi><mo>&#x0002F;</mo><msup><mi>m</mi><mn>2</mn></msup></mrow></math>.
+   *Hint: Use <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C1;</mi><mi>v</mi></msub><mo>&#x0003D;</mo><mo>&#x02207;</mo><mo>&#x000B7;</mo><mi>&#x1D403;</mi></mrow></math>.*
+   *Answer: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C1;</mi><mi>v</mi></msub><mo>&#x0003D;</mo><mn>2</mn><mi>y</mi><mo>&#x0002B;</mo><mn>1</mn></mrow></math> <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>C</mi><mo>&#x0002F;</mo><msup><mi>m</mi><mn>3</mn></msup></mrow></math>*
+
+2. A magnetic material has a relative permeability of 50. If <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D40C;</mi><mo>&#x0003D;</mo><mn>10</mn><msub><mi>&#x1D41A;</mi><mi>z</mi></msub></mrow></math> A/m, find the magnetic field intensity <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D407;</mi></mrow></math>.
+   *Hint: Use <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003BC;</mi><mi>r</mi></msub><mo>&#x0003D;</mo><mn>1</mn><mo>&#x0002B;</mo><msub><mi>&#x003C7;</mi><mi>m</mi></msub></mrow></math> and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D40C;</mi><mo>&#x0003D;</mo><msub><mi>&#x003C7;</mi><mi>m</mi></msub><mi>&#x1D407;</mi></mrow></math>.*
+   *Answer: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C7;</mi><mi>m</mi></msub><mo>&#x0003D;</mo><mn>49</mn></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D407;</mi><mo>&#x0003D;</mo><mfrac><mrow><mn>10</mn></mrow><mrow><mn>49</mn></mrow></mfrac><msub><mi>&#x1D41A;</mi><mi>z</mi></msub></mrow></math> A/m*
+
+3. Two perfect dielectrics, region 1 (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003B5;</mi><mrow><mi>r</mi><mn>1</mn></mrow></msub><mo>&#x0003D;</mo><mn>2</mn></mrow></math>) and region 2 (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003B5;</mi><mrow><mi>r</mi><mn>2</mn></mrow></msub><mo>&#x0003D;</mo><mn>4</mn></mrow></math>), are separated by the plane <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>. If <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x1D404;</mi><mn>1</mn></msub><mo>&#x0003D;</mo><mn>3</mn><msub><mi>&#x1D41A;</mi><mi>x</mi></msub><mo>&#x0002B;</mo><mn>4</mn><msub><mi>&#x1D41A;</mi><mi>y</mi></msub><mo>&#x0002B;</mo><mn>2</mn><msub><mi>&#x1D41A;</mi><mi>z</mi></msub></mrow></math> V/m, find <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x1D404;</mi><mn>2</mn></msub></mrow></math> assuming a charge-free boundary.
+   *Hint: Tangential <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi></mrow></math> and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math> components are continuous. Normal <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> component of <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D403;</mi></mrow></math> is continuous.*
+   *Answer: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x1D404;</mi><mn>2</mn></msub><mo>&#x0003D;</mo><mn>1.5</mn><msub><mi>&#x1D41A;</mi><mi>x</mi></msub><mo>&#x0002B;</mo><mn>4</mn><msub><mi>&#x1D41A;</mi><mi>y</mi></msub><mo>&#x0002B;</mo><mn>2</mn><msub><mi>&#x1D41A;</mi><mi>z</mi></msub></mrow></math> V/m*
+</Section 6.1: Electric Field and Magnetic Field (AEiE0601)>
+
+<hr />
+<Section 6.2: Wave Propagation and Antenna (AEiE0602)>
+## 1. Introduction
+This section explores time-varying electromagnetic fields, the cornerstone of wireless communication. We bridge the gap between statics and dynamics using Maxwell's equations and displacement current, study how waves propagate through different media, and finally examine how antennas radiate and receive these waves. This topic is heavily tested in the NEC exam for telecommunication and electronics roles.
+
+## 2. Displacement Current
+In static fields, Ampere's law is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02207;</mo><mo>&#x000D7;</mo><mi>&#x1D407;</mi><mo>&#x0003D;</mo><mi>&#x1D409;</mi></mrow></math>. However, for time-varying fields, taking the divergence of both sides yields <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02207;</mo><mo>&#x000B7;</mo><mo stretchy="false">&#x00028;</mo><mo>&#x02207;</mo><mo>&#x000D7;</mo><mi>&#x1D407;</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x02207;</mo><mo>&#x000B7;</mo><mi>&#x1D409;</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>. This contradicts the continuity equation <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02207;</mo><mo>&#x000B7;</mo><mi>&#x1D409;</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mfrac><mrow><mo>&#x02202;</mo><msub><mi>&#x003C1;</mi><mi>v</mi></msub></mrow><mrow><mo>&#x02202;</mo><mi>t</mi></mrow></mfrac></mrow></math>.
+To resolve this, James Clerk Maxwell introduced the **displacement current density (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x1D409;</mi><mi>d</mi></msub></mrow></math>)**.
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02207;</mo><mo>&#x000D7;</mo><mi>&#x1D407;</mi><mo>&#x0003D;</mo><mi>&#x1D409;</mi><mo>&#x0002B;</mo><msub><mi>&#x1D409;</mi><mi>d</mi></msub></mrow></math></div>
+where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x1D409;</mi><mi>d</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><mo>&#x02202;</mo><mi>&#x1D403;</mi></mrow><mrow><mo>&#x02202;</mo><mi>t</mi></mrow></mfrac></mrow></math>.
+
+> [!NOTE] Definition
+> **Displacement Current**: The current arising from a time-varying electric flux. It does not involve the physical movement of charges but rather the variation of the electric field with time (e.g., current 'flowing' through a capacitor).
+
+## 3. Maxwell's Equations
+Maxwell's equations are the fundamental laws governing all macroscopic electromagnetic phenomena.
+
+| Law | Point (Differential) Form | Integral Form | Physical Meaning |
+| :--- | :--- | :--- | :--- |
+| **Faraday's Law** | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02207;</mo><mo>&#x000D7;</mo><mi>&#x1D404;</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mfrac><mrow><mo>&#x02202;</mo><mi>&#x1D401;</mi></mrow><mrow><mo>&#x02202;</mo><mi>t</mi></mrow></mfrac></mrow></math> | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mo>&#x0222E;</mo><mi>L</mi></msub><mi>&#x1D404;</mi><mo>&#x000B7;</mo><mi>d</mi><mi>&#x1D425;</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><msub><mo>&#x0222B;</mo><mi>S</mi></msub><mfrac><mrow><mo>&#x02202;</mo><mi>&#x1D401;</mi></mrow><mrow><mo>&#x02202;</mo><mi>t</mi></mrow></mfrac><mo>&#x000B7;</mo><mi>d</mi><mi>&#x1D412;</mi></mrow></math> | Time-varying magnetic field induces an electric field. |
+| **Ampere-Maxwell Law** | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02207;</mo><mo>&#x000D7;</mo><mi>&#x1D407;</mi><mo>&#x0003D;</mo><mi>&#x1D409;</mi><mo>&#x0002B;</mo><mfrac><mrow><mo>&#x02202;</mo><mi>&#x1D403;</mi></mrow><mrow><mo>&#x02202;</mo><mi>t</mi></mrow></mfrac></mrow></math> | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mo>&#x0222E;</mo><mi>L</mi></msub><mi>&#x1D407;</mi><mo>&#x000B7;</mo><mi>d</mi><mi>&#x1D425;</mi><mo>&#x0003D;</mo><msub><mo>&#x0222B;</mo><mi>S</mi></msub><mo stretchy="false">&#x00028;</mo><mi>&#x1D409;</mi><mo>&#x0002B;</mo><mfrac><mrow><mo>&#x02202;</mo><mi>&#x1D403;</mi></mrow><mrow><mo>&#x02202;</mo><mi>t</mi></mrow></mfrac><mo stretchy="false">&#x00029;</mo><mo>&#x000B7;</mo><mi>d</mi><mi>&#x1D412;</mi></mrow></math> | Time-varying electric field and current induce a magnetic field. |
+| **Gauss's Law (Electric)**| <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02207;</mo><mo>&#x000B7;</mo><mi>&#x1D403;</mi><mo>&#x0003D;</mo><msub><mi>&#x003C1;</mi><mi>v</mi></msub></mrow></math> | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mo>&#x0222E;</mo><mi>S</mi></msub><mi>&#x1D403;</mi><mo>&#x000B7;</mo><mi>d</mi><mi>&#x1D412;</mi><mo>&#x0003D;</mo><msub><mo>&#x0222B;</mo><mi>v</mi></msub><msub><mi>&#x003C1;</mi><mi>v</mi></msub><mi>d</mi><mi>v</mi></mrow></math> | Electric flux through closed surface equals enclosed charge. |
+| **Gauss's Law (Magnetic)**| <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02207;</mo><mo>&#x000B7;</mo><mi>&#x1D401;</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mo>&#x0222E;</mo><mi>S</mi></msub><mi>&#x1D401;</mi><mo>&#x000B7;</mo><mi>d</mi><mi>&#x1D412;</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> | No magnetic monopoles exist; magnetic flux lines are continuous loops. |
+
+## 4. Wave Propagation in Media
+The wave equations are derived from Maxwell's equations. For a source-free region (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C1;</mi><mi>v</mi></msub><mo>&#x0003D;</mo><mn>0</mn><mo>&#x0002C;</mo><mi>&#x1D409;</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>), the wave equation for <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D404;</mi></mrow></math> is:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mo>&#x02207;</mo><mn>2</mn></msup><mi>&#x1D404;</mi><mo>&#x02212;</mo><mi>&#x003BC;</mi><mi>&#x003B5;</mi><mfrac><mrow><msup><mo>&#x02202;</mo><mn>2</mn></msup><mi>&#x1D404;</mi></mrow><mrow><mo>&#x02202;</mo><msup><mi>t</mi><mn>2</mn></msup></mrow></mfrac><mo>&#x0003D;</mo><mn>0</mn></mrow></math></div>
+
+For a time-harmonic field (varying as <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>e</mi><mrow><mi>j</mi><mi>&#x003C9;</mi><mi>t</mi></mrow></msup></mrow></math>), the wave propagation constant is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B3;</mi><mo>&#x0003D;</mo><mi>&#x003B1;</mi><mo>&#x0002B;</mo><mi>j</mi><mi>&#x003B2;</mi></mrow></math>.
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B3;</mi><mo>&#x0003D;</mo><msqrt><mrow><mi>j</mi><mi>&#x003C9;</mi><mi>&#x003BC;</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C3;</mi><mo>&#x0002B;</mo><mi>j</mi><mi>&#x003C9;</mi><mi>&#x003B5;</mi><mo stretchy="false">&#x00029;</mo></mrow></msqrt></mrow></math></div>
+- <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B1;</mi></mrow></math>: Attenuation constant (Np/m)
+- <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B2;</mi></mrow></math>: Phase constant (rad/m)
+- Intrinsic impedance: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B7;</mi><mo>&#x0003D;</mo><msqrt><mrow><mfrac><mrow><mi>j</mi><mi>&#x003C9;</mi><mi>&#x003BC;</mi></mrow><mrow><mi>&#x003C3;</mi><mo>&#x0002B;</mo><mi>j</mi><mi>&#x003C9;</mi><mi>&#x003B5;</mi></mrow></mfrac></mrow></msqrt></mrow></math> (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003A9;</mi></mrow></math>)
+- Phase velocity: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mi>p</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><mi>&#x003C9;</mi></mrow><mrow><mi>&#x003B2;</mi></mrow></mfrac></mrow></math> (m/s)
+
+### 4.1 Plane Waves in Free Space
+Free space parameters: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003C3;</mi><mo>&#x0003D;</mo><mn>0</mn><mo>&#x0002C;</mo><mi>&#x003B5;</mi><mo>&#x0003D;</mo><msub><mi>&#x003B5;</mi><mn>0</mn></msub><mo>&#x0002C;</mo><mi>&#x003BC;</mi><mo>&#x0003D;</mo><msub><mi>&#x003BC;</mi><mn>0</mn></msub></mrow></math>.
+- <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B1;</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> (No attenuation)
+- <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B2;</mi><mo>&#x0003D;</mo><mi>&#x003C9;</mi><msqrt><mrow><msub><mi>&#x003BC;</mi><mn>0</mn></msub><msub><mi>&#x003B5;</mi><mn>0</mn></msub></mrow></msqrt><mo>&#x0003D;</mo><mfrac><mrow><mi>&#x003C9;</mi></mrow><mrow><mi>c</mi></mrow></mfrac></mrow></math>
+- <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mi>p</mi></msub><mo>&#x0003D;</mo><mi>c</mi><mo>&#x0003D;</mo><mn>3</mn><mo>&#x000D7;</mo><msup><mn>10</mn><mn>8</mn></msup></mrow></math> m/s
+- <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B7;</mi><mo>&#x0003D;</mo><msub><mi>&#x003B7;</mi><mn>0</mn></msub><mo>&#x0003D;</mo><msqrt><mrow><mfrac><mrow><msub><mi>&#x003BC;</mi><mn>0</mn></msub></mrow><mrow><msub><mi>&#x003B5;</mi><mn>0</mn></msub></mrow></mfrac></mrow></msqrt><mo>&#x02248;</mo><mn>377</mn><mi>&#x003A9;</mi><mo>&#x02248;</mo><mn>120</mn><mi>&#x003C0;</mi><mi>&#x003A9;</mi></mrow></math>
+
+### 4.2 Lossless Dielectric
+Parameters: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003C3;</mi><mo>&#x02248;</mo><mn>0</mn><mo>&#x0002C;</mo><mi>&#x003B5;</mi><mo>&#x0003D;</mo><msub><mi>&#x003B5;</mi><mi>r</mi></msub><msub><mi>&#x003B5;</mi><mn>0</mn></msub><mo>&#x0002C;</mo><mi>&#x003BC;</mi><mo>&#x0003D;</mo><msub><mi>&#x003BC;</mi><mi>r</mi></msub><msub><mi>&#x003BC;</mi><mn>0</mn></msub></mrow></math>.
+- <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B1;</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>
+- <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B2;</mi><mo>&#x0003D;</mo><mi>&#x003C9;</mi><msqrt><mrow><mi>&#x003BC;</mi><mi>&#x003B5;</mi></mrow></msqrt></mrow></math>
+- <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mi>p</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msqrt><mrow><mi>&#x003BC;</mi><mi>&#x003B5;</mi></mrow></msqrt></mrow></mfrac><mo>&#x0003D;</mo><mfrac><mrow><mi>c</mi></mrow><mrow><msqrt><mrow><msub><mi>&#x003BC;</mi><mi>r</mi></msub><msub><mi>&#x003B5;</mi><mi>r</mi></msub></mrow></msqrt></mrow></mfrac></mrow></math>
+- <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B7;</mi><mo>&#x0003D;</mo><msqrt><mrow><mfrac><mrow><mi>&#x003BC;</mi></mrow><mrow><mi>&#x003B5;</mi></mrow></mfrac></mrow></msqrt></mrow></math>
+
+### 4.3 Good Conductor
+Parameters: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003C3;</mi><mo>&#x0226B;</mo><mi>&#x003C9;</mi><mi>&#x003B5;</mi></mrow></math>.
+- <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B1;</mi><mo>&#x0003D;</mo><mi>&#x003B2;</mi><mo>&#x0003D;</mo><msqrt><mrow><mfrac><mrow><mi>&#x003C9;</mi><mi>&#x003BC;</mi><mi>&#x003C3;</mi></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></msqrt></mrow></math>
+- Skin Depth (Depth of penetration) <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B4;</mi><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>&#x003B1;</mi></mrow></mfrac><mo>&#x0003D;</mo><msqrt><mrow><mfrac><mrow><mn>2</mn></mrow><mrow><mi>&#x003C9;</mi><mi>&#x003BC;</mi><mi>&#x003C3;</mi></mrow></mfrac></mrow></msqrt></mrow></math>. It is the distance over which the wave amplitude drops to <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>e</mi><mrow><mo>&#x02212;</mo><mn>1</mn></mrow></msup></mrow></math> (about 37%) of its initial value.
+- <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mi>p</mi></msub><mo>&#x0003D;</mo><mi>&#x003C9;</mi><mi>&#x003B4;</mi></mrow></math>
+- <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B7;</mi><mo>&#x0003D;</mo><msqrt><mrow><mfrac><mrow><mi>&#x003C9;</mi><mi>&#x003BC;</mi></mrow><mrow><mi>&#x003C3;</mi></mrow></mfrac></mrow></msqrt><mo>&#x02220;</mo><msup><mn>45</mn><mo>&#x02218;</mo></msup></mrow></math>
+
+## 5. Reflection of Plane Waves
+When a wave hits a boundary between two media, part of it is reflected and part is transmitted.
+- **Normal Incidence**: The wave strikes the boundary perpendicular to the surface.
+  - Reflection Coefficient: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00393;</mi><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>E</mi><mrow><mi>r</mi><mn>0</mn></mrow></msub></mrow><mrow><msub><mi>E</mi><mrow><mi>i</mi><mn>0</mn></mrow></msub></mrow></mfrac><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>&#x003B7;</mi><mn>2</mn></msub><mo>&#x02212;</mo><msub><mi>&#x003B7;</mi><mn>1</mn></msub></mrow><mrow><msub><mi>&#x003B7;</mi><mn>2</mn></msub><mo>&#x0002B;</mo><msub><mi>&#x003B7;</mi><mn>1</mn></msub></mrow></mfrac></mrow></math>
+  - Transmission Coefficient: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003C4;</mi><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>E</mi><mrow><mi>t</mi><mn>0</mn></mrow></msub></mrow><mrow><msub><mi>E</mi><mrow><mi>i</mi><mn>0</mn></mrow></msub></mrow></mfrac><mo>&#x0003D;</mo><mfrac><mrow><mn>2</mn><msub><mi>&#x003B7;</mi><mn>2</mn></msub></mrow><mrow><msub><mi>&#x003B7;</mi><mn>2</mn></msub><mo>&#x0002B;</mo><msub><mi>&#x003B7;</mi><mn>1</mn></msub></mrow></mfrac></mrow></math>
+  - Note: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x0002B;</mo><mi>&#x00393;</mi><mo>&#x0003D;</mo><mi>&#x003C4;</mi></mrow></math>.
+- **Oblique Incidence**: Involves perpendicular and parallel polarizations, requiring Snell's laws and Fresnel equations.
+
+## 6. Rectangular Waveguide
+Waveguides are hollow metallic pipes used to confine and guide electromagnetic waves, typically at microwave frequencies.
+- **Modes**: Waves propagate in specific configurations called modes.
+- **TE (Transverse Electric) Mode**: Electric field has no component in the direction of propagation (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>E</mi><mi>z</mi></msub><mo>&#x0003D;</mo><mn>0</mn><mo>&#x0002C;</mo><msub><mi>H</mi><mi>z</mi></msub><mo>&#x02260;</mo><mn>0</mn></mrow></math>).
+- **TM (Transverse Magnetic) Mode**: Magnetic field has no component in the direction of propagation (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>H</mi><mi>z</mi></msub><mo>&#x0003D;</mo><mn>0</mn><mo>&#x0002C;</mo><msub><mi>E</mi><mi>z</mi></msub><mo>&#x02260;</mo><mn>0</mn></mrow></math>).
+- **TEM (Transverse Electromagnetic) Mode**: Neither <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>E</mi></mrow></math> nor <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>H</mi></mrow></math> has a component in the direction of propagation (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>E</mi><mi>z</mi></msub><mo>&#x0003D;</mo><mn>0</mn><mo>&#x0002C;</mo><msub><mi>H</mi><mi>z</mi></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>). *TEM mode cannot exist in a hollow rectangular waveguide.*
+
+**Cutoff Frequency (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>f</mi><mi>c</mi></msub></mrow></math>)**: The lowest frequency at which a specific mode will propagate. Frequencies below <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>f</mi><mi>c</mi></msub></mrow></math> are attenuated (evanescent modes).
+For a rectangular waveguide of dimensions <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x000D7;</mo><mi>b</mi></mrow></math> (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0003E;</mo><mi>b</mi></mrow></math>):
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>f</mi><mrow><mi>c</mi><mo>&#x0002C;</mo><mi>m</mi><mi>n</mi></mrow></msub><mo>&#x0003D;</mo><mfrac><mrow><mi>v</mi></mrow><mrow><mn>2</mn></mrow></mfrac><msqrt><mrow><msup><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mfrac><mrow><mi>m</mi></mrow><mrow><mi>a</mi></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mn>2</mn></msup><mo>&#x0002B;</mo><msup><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mfrac><mrow><mi>n</mi></mrow><mrow><mi>b</mi></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mn>2</mn></msup></mrow></msqrt></mrow></math></div>
+where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>v</mi></mrow></math> is the phase velocity in the dielectric inside the waveguide.
+**Dominant Mode**: The mode with the lowest cutoff frequency. For <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0003E;</mo><mi>b</mi></mrow></math>, the dominant mode is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>T</mi><msub><mi>E</mi><mrow><mn>10</mn></mrow></msub></mrow></math>.
+
+## 7. Antenna Fundamentals
+An antenna is a transducer that converts guided electromagnetic energy into radiating waves in free space, and vice versa.
+
+### 7.1 Key Parameters
+- **Radiation Pattern**: A mathematical or graphical representation of the radiation properties of the antenna as a function of space coordinates.
+- **Directivity (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>D</mi></mrow></math>)**: Ratio of maximum radiation intensity to the average radiation intensity. <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>D</mi><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>U</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub></mrow><mrow><msub><mi>U</mi><mrow><mi>a</mi><mi>v</mi><mi>g</mi></mrow></msub></mrow></mfrac></mrow></math>.
+- **Gain (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi></mrow></math>)**: Incorporates the antenna's efficiency (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>e</mi></mrow></math>). <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mo>&#x0003D;</mo><mi>e</mi><mi>D</mi></mrow></math>.
+- **Effective Area (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>A</mi><mi>e</mi></msub></mrow></math>)**: Measure of an antenna's ability to extract energy from a passing wave. <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>A</mi><mi>e</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><msup><mi>&#x003BB;</mi><mn>2</mn></msup></mrow><mrow><mn>4</mn><mi>&#x003C0;</mi></mrow></mfrac><mi>D</mi></mrow></math>.
+
+### 7.2 Types of Antennas
+- **Isotropic Antenna**: A hypothetical, lossless antenna having equal radiation in all directions (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>D</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math>). Used as a reference.
+- **Omnidirectional Antenna**: Radiates equally in a given plane (e.g., horizontal plane) but not in other planes (e.g., a vertical dipole).
+- **Directional Antenna**: Radiates/receives electromagnetic waves more effectively in some directions than in others (e.g., Yagi-Uda, Parabolic reflector).
+- **Dipole Antenna**: The basic radiating element. A half-wave dipole (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>L</mi><mo>&#x0003D;</mo><mi>&#x003BB;</mi><mo>&#x0002F;</mo><mn>2</mn></mrow></math>) has a directivity of 1.64 (2.15 dBi) and radiation resistance of 73 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003A9;</mi></mrow></math>.
+- **Travelling Wave Antenna**: Current travels in one direction (no standing waves). Examples: Beverage antenna, Rhombic antenna, Helical antenna (in axial mode). They are characteristically broadband.
+
+## Worked Example
+
+**Example 1**: A <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>100</mn></mrow></math> MHz uniform plane wave propagates in a lossless medium with <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003B5;</mi><mi>r</mi></msub><mo>&#x0003D;</mo><mn>4</mn></mrow></math> and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003BC;</mi><mi>r</mi></msub><mo>&#x0003D;</mo><mn>1</mn></mrow></math>. Calculate the phase velocity and intrinsic impedance.
+**Solution**:
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003C9;</mi><mo>&#x0003D;</mo><mn>2</mn><mi>&#x003C0;</mi><mi>f</mi><mo>&#x0003D;</mo><mn>2</mn><mi>&#x003C0;</mi><mo>&#x000D7;</mo><msup><mn>10</mn><mn>8</mn></msup></mrow></math> rad/s
+Phase velocity <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mi>p</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><mi>c</mi></mrow><mrow><msqrt><mrow><msub><mi>&#x003BC;</mi><mi>r</mi></msub><msub><mi>&#x003B5;</mi><mi>r</mi></msub></mrow></msqrt></mrow></mfrac><mo>&#x0003D;</mo><mfrac><mrow><mn>3</mn><mo>&#x000D7;</mo><msup><mn>10</mn><mn>8</mn></msup></mrow><mrow><msqrt><mrow><mn>1</mn><mo>&#x000D7;</mo><mn>4</mn></mrow></msqrt></mrow></mfrac><mo>&#x0003D;</mo><mn>1.5</mn><mo>&#x000D7;</mo><msup><mn>10</mn><mn>8</mn></msup></mrow></math> m/s
+Intrinsic impedance <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B7;</mi><mo>&#x0003D;</mo><msqrt><mrow><mfrac><mrow><mi>&#x003BC;</mi></mrow><mrow><mi>&#x003B5;</mi></mrow></mfrac></mrow></msqrt><mo>&#x0003D;</mo><msqrt><mrow><mfrac><mrow><msub><mi>&#x003BC;</mi><mi>r</mi></msub><msub><mi>&#x003BC;</mi><mn>0</mn></msub></mrow><mrow><msub><mi>&#x003B5;</mi><mi>r</mi></msub><msub><mi>&#x003B5;</mi><mn>0</mn></msub></mrow></mfrac></mrow></msqrt><mo>&#x0003D;</mo><msub><mi>&#x003B7;</mi><mn>0</mn></msub><msqrt><mrow><mfrac><mrow><msub><mi>&#x003BC;</mi><mi>r</mi></msub></mrow><mrow><msub><mi>&#x003B5;</mi><mi>r</mi></msub></mrow></mfrac></mrow></msqrt><mo>&#x0003D;</mo><mn>377</mn><msqrt><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>4</mn></mrow></mfrac></mrow></msqrt><mo>&#x0003D;</mo><mn>188.5</mn><mi>&#x003A9;</mi></mrow></math>.
+
+---
+
+## Common Mistakes / Exam Tips
+
+> [!WARNING]
+> - Confusing TE and TM modes. Remember: TE means <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>E</mi></mrow></math> is transverse (meaning <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>E</mi><mi>z</mi></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>).
+> - Assuming TEM mode can propagate in hollow waveguides. It requires two separate conductors (like a coaxial cable).
+
+> [!TIP]
+> - **Skin depth (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B4;</mi></mrow></math>)**: Remember that skin depth decreases as frequency or conductivity increases. High-frequency currents flow only on the surface of conductors.
+> - **Dominant mode of rectangular waveguide (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0003E;</mo><mi>b</mi></mrow></math>)**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>T</mi><msub><mi>E</mi><mrow><mn>10</mn></mrow></msub></mrow></math>. For <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>T</mi><msub><mi>E</mi><mrow><mn>10</mn></mrow></msub></mrow></math>, the cutoff frequency is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>f</mi><mrow><mi>c</mi><mo>&#x0002C;</mo><mn>10</mn></mrow></msub><mo>&#x0003D;</mo><mfrac><mrow><mi>c</mi></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mrow></math>.
+> - **Maxwell's Equations**: Be able to identify the mathematical expressions and match them to their physical laws (Faraday, Ampere, Gauss).
+
+---
+
+## Quick Reference / Formula Summary
+
+> [!IMPORTANT]
+> - Free space intrinsic impedance: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003B7;</mi><mn>0</mn></msub><mo>&#x02248;</mo><mn>377</mn><mi>&#x003A9;</mi></mrow></math> or <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>120</mn><mi>&#x003C0;</mi><mi>&#x003A9;</mi></mrow></math>
+> - Speed of light: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>c</mi><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msqrt><mrow><msub><mi>&#x003BC;</mi><mn>0</mn></msub><msub><mi>&#x003B5;</mi><mn>0</mn></msub></mrow></msqrt></mrow></mfrac><mo>&#x02248;</mo><mn>3</mn><mo>&#x000D7;</mo><msup><mn>10</mn><mn>8</mn></msup></mrow></math> m/s
+> - Reflection coefficient: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00393;</mi><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>&#x003B7;</mi><mn>2</mn></msub><mo>&#x02212;</mo><msub><mi>&#x003B7;</mi><mn>1</mn></msub></mrow><mrow><msub><mi>&#x003B7;</mi><mn>2</mn></msub><mo>&#x0002B;</mo><msub><mi>&#x003B7;</mi><mn>1</mn></msub></mrow></mfrac></mrow></math>
+> - Antenna effective area relation to directivity: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>D</mi><mo>&#x0003D;</mo><mfrac><mrow><mn>4</mn><mi>&#x003C0;</mi><msub><mi>A</mi><mi>e</mi></msub></mrow><mrow><msup><mi>&#x003BB;</mi><mn>2</mn></msup></mrow></mfrac></mrow></math>
+
+---
+
+## Practice Problems
+
+1. An electromagnetic wave has an electric field <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D404;</mi><mo>&#x0003D;</mo><mn>10</mn><mi>cos</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mi>t</mi><mo>&#x02212;</mo><mi>&#x003B2;</mi><mi>z</mi><mo stretchy="false">&#x00029;</mo><msub><mi>&#x1D41A;</mi><mi>x</mi></msub></mrow></math> V/m in free space. Find the corresponding magnetic field <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D407;</mi></mrow></math>.
+   *Hint: In free space, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>E</mi></mrow></math> and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>H</mi></mrow></math> are perpendicular, and their ratio is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003B7;</mi><mn>0</mn></msub></mrow></math>. The wave propagates in <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0002B;</mo><mi>z</mi></mrow></math> direction, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D404;</mi></mrow></math> is in <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0002B;</mo><mi>x</mi></mrow></math>, so <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D407;</mi></mrow></math> must be in <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0002B;</mo><mi>y</mi></mrow></math> (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x1D41A;</mi><mi>x</mi></msub><mo>&#x000D7;</mo><msub><mi>&#x1D41A;</mi><mi>y</mi></msub><mo>&#x0003D;</mo><msub><mi>&#x1D41A;</mi><mi>z</mi></msub></mrow></math>).*
+   *Answer: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D407;</mi><mo>&#x0003D;</mo><mfrac><mrow><mn>10</mn></mrow><mrow><mn>377</mn></mrow></mfrac><mi>cos</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mi>t</mi><mo>&#x02212;</mo><mi>&#x003B2;</mi><mi>z</mi><mo stretchy="false">&#x00029;</mo><msub><mi>&#x1D41A;</mi><mi>y</mi></msub></mrow></math> A/m*
+
+2. Calculate the cutoff frequency for the dominant <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>T</mi><msub><mi>E</mi><mrow><mn>10</mn></mrow></msub></mrow></math> mode in an air-filled rectangular waveguide with dimensions <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0003D;</mo><mn>2</mn></mrow></math> cm and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>b</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math> cm.
+   *Hint: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>f</mi><mrow><mi>c</mi><mo>&#x0002C;</mo><mn>10</mn></mrow></msub><mo>&#x0003D;</mo><mfrac><mrow><mi>c</mi></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mrow></math>.*
+   *Answer: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>f</mi><mi>c</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>3</mn><mo>&#x000D7;</mo><msup><mn>10</mn><mn>8</mn></msup></mrow><mrow><mn>2</mn><mo>&#x000D7;</mo><mn>0.02</mn></mrow></mfrac><mo>&#x0003D;</mo><mn>7.5</mn></mrow></math> GHz.*
+
+3. What is the skin depth of copper (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003C3;</mi><mo>&#x0003D;</mo><mn>5.8</mn><mo>&#x000D7;</mo><msup><mn>10</mn><mn>7</mn></msup></mrow></math> S/m, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003BC;</mi><mi>r</mi></msub><mo>&#x0003D;</mo><mn>1</mn></mrow></math>) at 10 MHz?
+   *Hint: Use <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B4;</mi><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msqrt><mrow><mi>&#x003C0;</mi><mi>f</mi><msub><mi>&#x003BC;</mi><mn>0</mn></msub><mi>&#x003C3;</mi></mrow></msqrt></mrow></mfrac></mrow></math>.*
+   *Answer: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B4;</mi><mo>&#x02248;</mo><mn>20.9</mn></mrow></math> <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BC;</mi></mrow></math>m.*
+</Section 6.2: Wave Propagation and Antenna (AEiE0602)>
+
+<hr />
+<Section 6.3: Communication System (AEiE0603)>
+## 1. Introduction
+Communication systems are designed to transmit information from a source to a destination reliably and efficiently. This section covers the foundational aspects of both analog and digital communication, focusing on signal representation, system bandwidth, signal distortion, and various modulation techniques (AM, FM, PM). This is a high-yield topic for the NEC exam.
+
+## 2. Basic Building Blocks of Communication Systems
+Every communication system comprises three essential components:
+1.  **Transmitter**: Converts the source information (voice, data, video) into a signal suitable for transmission. This often involves filtering, amplification, and modulation.
+2.  **Channel/Medium**: The physical path over which the signal travels (e.g., copper wire, optical fiber, free space). The channel introduces attenuation and noise.
+3.  **Receiver**: Extracts the desired information from the received signal. This involves amplification, demodulation, and filtering.
+
+> [!NOTE] Definition
+> **Modulation**: The process of varying one or more properties (amplitude, frequency, or phase) of a periodic waveform, called the *carrier signal*, with a modulating signal that contains information to be transmitted.
+
+## 3. Signal and Noise in Communication System
+-   **Signal**: The desired electrical or electromagnetic representation of the information.
+-   **Noise**: Unwanted, random electrical energy that interferes with the transmitted signal. Noise can be internal (thermal noise in electronics) or external (atmospheric, cosmic, industrial).
+-   **Signal-to-Noise Ratio (SNR)**: A critical parameter indicating system quality. It is the ratio of signal power to noise power.
+    <div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>S</mi><mi>N</mi><msub><mi>R</mi><mrow><mi>d</mi><mi>B</mi></mrow></msub><mo>&#x0003D;</mo><mn>10</mn><msub><mi>log</mi><mrow><mn>10</mn></mrow></msub><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mfrac><mrow><msub><mi>P</mi><mrow><mi>s</mi><mi>i</mi><mi>g</mi><mi>n</mi><mi>a</mi><mi>l</mi></mrow></msub></mrow><mrow><msub><mi>P</mi><mrow><mi>n</mi><mi>o</mi><mi>i</mi><mi>s</mi><mi>e</mi></mrow></msub></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow></mrow></math></div>
+
+## 4. Low Pass and Band Pass Signals and Systems
+-   **Low Pass Signal**: A signal whose frequency spectrum is concentrated around zero frequency (DC) and drops off at higher frequencies. Baseband signals (like voice or unmodulated data) are low pass.
+-   **Band Pass Signal**: A signal whose frequency spectrum is concentrated around a non-zero frequency (the carrier frequency <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>f</mi><mi>c</mi></msub></mrow></math>). Modulated signals transmitted over the air are band pass.
+-   **Bandwidth (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mi>W</mi></mrow></math>)**: The range of frequencies over which a signal has significant power or a system can effectively operate. For a low pass system, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mi>W</mi><mo>&#x0003D;</mo><msub><mi>f</mi><mrow><mi>u</mi><mi>p</mi><mi>p</mi><mi>e</mi><mi>r</mi></mrow></msub></mrow></math>. For a band pass system, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mi>W</mi><mo>&#x0003D;</mo><msub><mi>f</mi><mrow><mi>u</mi><mi>p</mi><mi>p</mi><mi>e</mi><mi>r</mi></mrow></msub><mo>&#x02212;</mo><msub><mi>f</mi><mrow><mi>l</mi><mi>o</mi><mi>w</mi><mi>e</mi><mi>r</mi></mrow></msub></mrow></math>.
+
+## 5. Distortionless Transmission
+For a signal <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> to pass through a system with impulse response <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>h</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> and emerge perfectly undistorted as <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math>, the output must be an exact replica of the input, except for a possible amplitude scaling (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>K</mi></mrow></math>) and a time delay (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mi>d</mi></msub></mrow></math>).
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>K</mi><mo>&#x000B7;</mo><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo>&#x02212;</mo><msub><mi>t</mi><mi>d</mi></msub><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+Taking the Fourier Transform:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>Y</mi><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>K</mi><mo>&#x000B7;</mo><mi>X</mi><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo stretchy="false">&#x00029;</mo><mo>&#x000B7;</mo><msup><mi>e</mi><mrow><mo>&#x02212;</mo><mi>j</mi><mn>2</mn><mi>&#x003C0;</mi><mi>f</mi><msub><mi>t</mi><mi>d</mi></msub></mrow></msup></mrow></math></div>
+Since <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>Y</mi><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>H</mi><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo stretchy="false">&#x00029;</mo><mo>&#x000B7;</mo><mi>X</mi><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo stretchy="false">&#x00029;</mo></mrow></math>, the transfer function for a distortionless system must be:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>H</mi><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>K</mi><msup><mi>e</mi><mrow><mo>&#x02212;</mo><mi>j</mi><mn>2</mn><mi>&#x003C0;</mi><mi>f</mi><msub><mi>t</mi><mi>d</mi></msub></mrow></msup></mrow></math></div>
+This implies two conditions for the system:
+1.  **Amplitude Response**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x0007C;</mo><mi>H</mi><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x0007C;</mo><mo>&#x0003D;</mo><mi>K</mi></mrow></math> (constant for all frequencies).
+2.  **Phase Response**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02220;</mo><mi>H</mi><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>2</mn><mi>&#x003C0;</mi><mi>f</mi><msub><mi>t</mi><mi>d</mi></msub></mrow></math> (linear phase shift proportional to frequency).
+
+## 6. The Hilbert Transform
+The Hilbert transform does not change the amplitude spectrum of a signal but applies a <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><msup><mn>90</mn><mo>&#x02218;</mo></msup></mrow></math> (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>&#x003C0;</mi><mo>&#x0002F;</mo><mn>2</mn></mrow></math>) phase shift to all positive frequencies and a <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0002B;</mo><msup><mn>90</mn><mo>&#x02218;</mo></msup></mrow></math> (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0002B;</mo><mi>&#x003C0;</mi><mo>&#x0002F;</mo><mn>2</mn></mrow></math>) phase shift to all negative frequencies.
+Mathematically, the Hilbert transform <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mover accent="true"><mrow><mi>x</mi></mrow><mo>&#x0005E;</mo></mover><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> of a signal <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> is its convolution with <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mi>&#x003C0;</mi><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math>:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mover accent="true"><mrow><mi>x</mi></mrow><mo>&#x0005E;</mo></mover><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002A;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>&#x003C0;</mi><mi>t</mi></mrow></mfrac><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>&#x003C0;</mi></mrow></mfrac><msubsup><mo>&#x0222B;</mo><mrow><mo>&#x02212;</mo><mo>&#x0221E;</mo></mrow><mrow><mo>&#x0221E;</mo></mrow></msubsup><mfrac><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C4;</mi><mo stretchy="false">&#x00029;</mo></mrow><mrow><mi>t</mi><mo>&#x02212;</mo><mi>&#x003C4;</mi></mrow></mfrac><mi>d</mi><mi>&#x003C4;</mi></mrow></math></div>
+In the frequency domain:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x02131;</mi><mo stretchy="false">&#x0007B;</mo><mover accent="true"><mrow><mi>x</mi></mrow><mo>&#x0005E;</mo></mover><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x0007D;</mo><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>j</mi><mo>&#x000B7;</mo><mtext>sgn</mtext><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo stretchy="false">&#x00029;</mo><mo>&#x000B7;</mo><mi>X</mi><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mtext>sgn</mtext><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo stretchy="false">&#x00029;</mo></mrow></math> is the signum function.
+**Application**: Hilbert transform is extensively used to generate Single Sideband (SSB) modulated signals and in representing bandpass signals in terms of their analytic signal components.
+
+## 7. Amplitude Modulation (AM)
+In AM, the amplitude of a high-frequency carrier wave is varied in accordance with the instantaneous amplitude of the modulating signal.
+
+### Time Domain Expression (Standard AM)
+Let the carrier be <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>c</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>A</mi><mi>c</mi></msub><mi>cos</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>&#x003C0;</mi><msub><mi>f</mi><mi>c</mi></msub><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> and the message be <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math>.
+The standard AM signal (DSB-FC: Double Sideband Full Carrier) is:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mrow><mi>A</mi><mi>M</mi></mrow></msub><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo stretchy="false">[</mo><msub><mi>A</mi><mi>c</mi></msub><mo>&#x0002B;</mo><mi>m</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">]</mo><mi>cos</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>&#x003C0;</mi><msub><mi>f</mi><mi>c</mi></msub><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>A</mi><mi>c</mi></msub><mo stretchy="false">[</mo><mn>1</mn><mo>&#x0002B;</mo><msub><mi>k</mi><mi>a</mi></msub><mi>m</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">]</mo><mi>cos</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>&#x003C0;</mi><msub><mi>f</mi><mi>c</mi></msub><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>k</mi><mi>a</mi></msub></mrow></math> is the amplitude sensitivity.
+**Modulation Index (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BC;</mi></mrow></math>)**: For a sinusoidal message <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>A</mi><mi>m</mi></msub><mi>cos</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>&#x003C0;</mi><msub><mi>f</mi><mi>m</mi></msub><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BC;</mi><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>A</mi><mi>m</mi></msub></mrow><mrow><msub><mi>A</mi><mi>c</mi></msub></mrow></mfrac><mo>&#x0003D;</mo><msub><mi>k</mi><mi>a</mi></msub><msub><mi>A</mi><mi>m</mi></msub></mrow></math>. For undistorted envelope detection, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BC;</mi><mo>&#x02264;</mo><mn>1</mn></mrow></math>.
+
+### Frequency Domain Representation
+The spectrum of AM contains a carrier impulse and two sidebands (Upper Sideband USB and Lower Sideband LSB).
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>S</mi><mrow><mi>A</mi><mi>M</mi></mrow></msub><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>A</mi><mi>c</mi></msub></mrow><mrow><mn>2</mn></mrow></mfrac><mo stretchy="false">[</mo><mi>&#x003B4;</mi><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo>&#x02212;</mo><msub><mi>f</mi><mi>c</mi></msub><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>&#x003B4;</mi><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo>&#x0002B;</mo><msub><mi>f</mi><mi>c</mi></msub><mo stretchy="false">&#x00029;</mo><mo stretchy="false">]</mo><mo>&#x0002B;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo stretchy="false">[</mo><mi>M</mi><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo>&#x02212;</mo><msub><mi>f</mi><mi>c</mi></msub><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>M</mi><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo>&#x0002B;</mo><msub><mi>f</mi><mi>c</mi></msub><mo stretchy="false">&#x00029;</mo><mo stretchy="false">]</mo></mrow></math></div>
+**Bandwidth of AM**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mi>W</mi><mo>&#x0003D;</mo><mn>2</mn><msub><mi>f</mi><mi>m</mi></msub></mrow></math> (where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>f</mi><mi>m</mi></msub></mrow></math> is the maximum frequency of the message).
+**Power**: Total power <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>P</mi><mi>t</mi></msub><mo>&#x0003D;</mo><msub><mi>P</mi><mi>c</mi></msub><mo stretchy="false">&#x00028;</mo><mn>1</mn><mo>&#x0002B;</mo><mfrac><mrow><msup><mi>&#x003BC;</mi><mn>2</mn></msup></mrow><mrow><mn>2</mn></mrow></mfrac><mo stretchy="false">&#x00029;</mo></mrow></math>.
+
+### Types of AM Signals
+1.  **DSB-FC (Standard AM)**: Carrier + both sidebands. Very inefficient in power but simple to demodulate (Envelope detector).
+2.  **DSB-SC (Double Sideband Suppressed Carrier)**: Carrier is suppressed. Power efficient but requires synchronous demodulation. <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>m</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x000B7;</mo><msub><mi>A</mi><mi>c</mi></msub><mi>cos</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>&#x003C0;</mi><msub><mi>f</mi><mi>c</mi></msub><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math>.
+3.  **SSB-SC (Single Sideband)**: Only one sideband is transmitted. Highly bandwidth efficient (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mi>W</mi><mo>&#x0003D;</mo><msub><mi>f</mi><mi>m</mi></msub></mrow></math>). Used in point-to-point voice communication.
+4.  **VSB (Vestigial Sideband)**: One sideband is almost entirely transmitted, and a trace (vestige) of the other sideband is transmitted. Used in standard television broadcasting.
+
+## 8. Angle Modulation: Frequency (FM) and Phase (PM)
+In angle modulation, the phase angle of the carrier is varied according to the message signal, while the amplitude remains constant.
+Let carrier <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>c</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>A</mi><mi>c</mi></msub><mi>cos</mi><mo stretchy="false">&#x00028;</mo><msub><mi>&#x003B8;</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00029;</mo></mrow></math>.
+-   **Phase Modulation (PM)**: The instantaneous phase varies linearly with the message.
+    <div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003B8;</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>2</mn><mi>&#x003C0;</mi><msub><mi>f</mi><mi>c</mi></msub><mi>t</mi><mo>&#x0002B;</mo><msub><mi>k</mi><mi>p</mi></msub><mi>m</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+    <div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mrow><mi>P</mi><mi>M</mi></mrow></msub><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>A</mi><mi>c</mi></msub><mi>cos</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>&#x003C0;</mi><msub><mi>f</mi><mi>c</mi></msub><mi>t</mi><mo>&#x0002B;</mo><msub><mi>k</mi><mi>p</mi></msub><mi>m</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+-   **Frequency Modulation (FM)**: The instantaneous frequency varies linearly with the message. Instantaneous frequency <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mi>&#x003C0;</mi></mrow></mfrac><mfrac><mrow><mi>d</mi><msub><mi>&#x003B8;</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mrow></math>.
+    <div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>f</mi><mi>c</mi></msub><mo>&#x0002B;</mo><msub><mi>k</mi><mi>f</mi></msub><mi>m</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+    <div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003B8;</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>2</mn><mi>&#x003C0;</mi><msub><mi>f</mi><mi>c</mi></msub><mi>t</mi><mo>&#x0002B;</mo><mn>2</mn><mi>&#x003C0;</mi><msub><mi>k</mi><mi>f</mi></msub><msubsup><mo>&#x0222B;</mo><mn>0</mn><mi>t</mi></msubsup><mi>m</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C4;</mi><mo stretchy="false">&#x00029;</mo><mi>d</mi><mi>&#x003C4;</mi></mrow></math></div>
+    <div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mrow><mi>F</mi><mi>M</mi></mrow></msub><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>A</mi><mi>c</mi></msub><mi>cos</mi><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mn>2</mn><mi>&#x003C0;</mi><msub><mi>f</mi><mi>c</mi></msub><mi>t</mi><mo>&#x0002B;</mo><mn>2</mn><mi>&#x003C0;</mi><msub><mi>k</mi><mi>f</mi></msub><msubsup><mo>&#x0222B;</mo><mn>0</mn><mi>t</mi></msubsup><mi>m</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C4;</mi><mo stretchy="false">&#x00029;</mo><mi>d</mi><mi>&#x003C4;</mi><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow></mrow></math></div>
+
+### FM Bandwidth (Carson's Rule)
+For FM, the modulation index is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B2;</mi><mo>&#x0003D;</mo><mfrac><mrow><mi>&#x00394;</mi><mi>f</mi></mrow><mrow><msub><mi>f</mi><mi>m</mi></msub></mrow></mfrac></mrow></math>, where frequency deviation <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mi>f</mi><mo>&#x0003D;</mo><msub><mi>k</mi><mi>f</mi></msub><msub><mi>A</mi><mi>m</mi></msub></mrow></math>.
+The practical bandwidth is given by **Carson's Rule**:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><msub><mi>W</mi><mrow><mi>F</mi><mi>M</mi></mrow></msub><mo>&#x02248;</mo><mn>2</mn><mo stretchy="false">&#x00028;</mo><mi>&#x00394;</mi><mi>f</mi><mo>&#x0002B;</mo><msub><mi>f</mi><mi>m</mi></msub><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>2</mn><msub><mi>f</mi><mi>m</mi></msub><mo stretchy="false">&#x00028;</mo><mi>&#x003B2;</mi><mo>&#x0002B;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+
+### Types of FM Signals
+1.  **Narrowband FM (NBFM)**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B2;</mi><mo>&#x0226A;</mo><mn>1</mn></mrow></math>. <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mi>W</mi><mo>&#x02248;</mo><mn>2</mn><msub><mi>f</mi><mi>m</mi></msub></mrow></math> (similar to AM). Used in mobile radios.
+2.  **Wideband FM (WBFM)**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B2;</mi><mo>&#x0226B;</mo><mn>1</mn></mrow></math>. <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mi>W</mi><mo>&#x02248;</mo><mn>2</mn><mi>&#x00394;</mi><mi>f</mi></mrow></math>. Used in FM radio broadcasting (high fidelity, better noise immunity).
+
+---
+
+## Comparison Table: AM vs FM
+
+| Feature | Amplitude Modulation (AM) | Frequency Modulation (FM) |
+| :--- | :--- | :--- |
+| **Parameter Varied** | Amplitude of carrier | Frequency of carrier |
+| **Bandwidth** | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><msub><mi>f</mi><mi>m</mi></msub></mrow></math> (constant) | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><mo stretchy="false">&#x00028;</mo><mi>&#x00394;</mi><mi>f</mi><mo>&#x0002B;</mo><msub><mi>f</mi><mi>m</mi></msub><mo stretchy="false">&#x00029;</mo></mrow></math> (depends on <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B2;</mi></mrow></math>) |
+| **Noise Immunity** | Poor | Very Good |
+| **Power Efficiency** | Poor (most power in carrier) | Constant power (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo>&#x0003D;</mo><msubsup><mi>A</mi><mi>c</mi><mn>2</mn></msubsup><mo>&#x0002F;</mo><mn>2</mn></mrow></math>) |
+| **Modulation Index** | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BC;</mi><mo>&#x0003D;</mo><msub><mi>A</mi><mi>m</mi></msub><mo>&#x0002F;</mo><msub><mi>A</mi><mi>c</mi></msub></mrow></math> (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn><mo>&#x02264;</mo><mi>&#x003BC;</mi><mo>&#x02264;</mo><mn>1</mn></mrow></math>) | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B2;</mi><mo>&#x0003D;</mo><mi>&#x00394;</mi><mi>f</mi><mo>&#x0002F;</mo><msub><mi>f</mi><mi>m</mi></msub></mrow></math> (can be <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0003E;</mo><mn>1</mn></mrow></math>) |
+| **Applications** | MW/SW Radio broadcasting | High-quality radio, TV audio |
+
+---
+
+## Worked Example
+
+**Example 1**: An AM wave has a total power of 1000 Watts with a modulation index of 0.5. Calculate the carrier power and the power in each sideband.
+**Solution**:
+Total Power <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>P</mi><mi>t</mi></msub><mo>&#x0003D;</mo><msub><mi>P</mi><mi>c</mi></msub><mo stretchy="false">&#x00028;</mo><mn>1</mn><mo>&#x0002B;</mo><mfrac><mrow><msup><mi>&#x003BC;</mi><mn>2</mn></msup></mrow><mrow><mn>2</mn></mrow></mfrac><mo stretchy="false">&#x00029;</mo></mrow></math>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1000</mn><mo>&#x0003D;</mo><msub><mi>P</mi><mi>c</mi></msub><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mn>1</mn><mo>&#x0002B;</mo><mfrac><mrow><msup><mn>0.5</mn><mn>2</mn></msup></mrow><mrow><mn>2</mn></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mo>&#x0003D;</mo><msub><mi>P</mi><mi>c</mi></msub><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mn>1</mn><mo>&#x0002B;</mo><mfrac><mrow><mn>0.25</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mo>&#x0003D;</mo><msub><mi>P</mi><mi>c</mi></msub><mo stretchy="false">&#x00028;</mo><mn>1.125</mn><mo stretchy="false">&#x00029;</mo></mrow></math>
+Carrier Power <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>P</mi><mi>c</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>1000</mn></mrow><mrow><mn>1.125</mn></mrow></mfrac><mo>&#x0003D;</mo><mn>888.89</mn></mrow></math> Watts.
+Total sideband power <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>P</mi><mrow><mi>S</mi><mi>B</mi></mrow></msub><mo>&#x0003D;</mo><msub><mi>P</mi><mi>t</mi></msub><mo>&#x02212;</mo><msub><mi>P</mi><mi>c</mi></msub><mo>&#x0003D;</mo><mn>1000</mn><mo>&#x02212;</mo><mn>888.89</mn><mo>&#x0003D;</mo><mn>111.11</mn></mrow></math> Watts.
+Power in each sideband (USB or LSB) <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0003D;</mo><msub><mi>P</mi><mrow><mi>S</mi><mi>B</mi></mrow></msub><mo>&#x0002F;</mo><mn>2</mn><mo>&#x0003D;</mo><mn>55.55</mn></mrow></math> Watts.
+
+---
+
+## Common Mistakes / Exam Tips
+
+> [!WARNING]
+> - Confusing the formulas for AM power vs FM bandwidth. In AM, power depends on the modulation index. In FM, the total transmitted power is *constant* regardless of modulation.
+> - Forgetting that phase must be linear for distortionless transmission; constant phase shift still causes phase distortion (except for a flat delay).
+
+> [!TIP]
+> - **Hilbert Transform property**: Applying the Hilbert transform twice gives the negative of the original signal: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mover accent="true"><mrow><mover accent="true"><mrow><mi>x</mi></mrow><mo>&#x0005E;</mo></mover></mrow><mo>&#x0005E;</mo></mover><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math>.
+> - **Carson's Rule**: This is universally tested. Always remember <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mi>W</mi><mo>&#x0003D;</mo><mn>2</mn><mo stretchy="false">&#x00028;</mo><mi>&#x00394;</mi><mi>f</mi><mo>&#x0002B;</mo><msub><mi>f</mi><mi>m</mi></msub><mo stretchy="false">&#x00029;</mo></mrow></math>.
+> - AM envelope detection works only for DSB-FC when <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BC;</mi><mo>&#x02264;</mo><mn>1</mn></mrow></math>. Overmodulation (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BC;</mi><mo>&#x0003E;</mo><mn>1</mn></mrow></math>) causes envelope distortion and requires synchronous detection.
+
+---
+
+## Quick Reference / Formula Summary
+
+> [!IMPORTANT]
+> - Distortionless System: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x0007C;</mo><mi>H</mi><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x0007C;</mo><mo>&#x0003D;</mo><mi>K</mi></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02220;</mo><mi>H</mi><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>2</mn><mi>&#x003C0;</mi><mi>f</mi><msub><mi>t</mi><mi>d</mi></msub></mrow></math>
+> - AM Standard Equation: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>A</mi><mi>c</mi></msub><mo stretchy="false">[</mo><mn>1</mn><mo>&#x0002B;</mo><mi>&#x003BC;</mi><mi>cos</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>&#x003C0;</mi><msub><mi>f</mi><mi>m</mi></msub><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">]</mo><mi>cos</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>&#x003C0;</mi><msub><mi>f</mi><mi>c</mi></msub><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math>
+> - FM Modulation Index: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B2;</mi><mo>&#x0003D;</mo><mfrac><mrow><mi>&#x00394;</mi><mi>f</mi></mrow><mrow><msub><mi>f</mi><mi>m</mi></msub></mrow></mfrac></mrow></math>
+> - FM Bandwidth: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mi>W</mi><mo>&#x0003D;</mo><mn>2</mn><mo stretchy="false">&#x00028;</mo><mi>&#x00394;</mi><mi>f</mi><mo>&#x0002B;</mo><msub><mi>f</mi><mi>m</mi></msub><mo stretchy="false">&#x00029;</mo></mrow></math>
+
+---
+
+## Practice Problems
+
+1. What is the Hilbert transform of <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>cos</mi><mo stretchy="false">&#x00028;</mo><msub><mi>&#x003C9;</mi><mn>0</mn></msub><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math>?
+   *Hint: The Hilbert transform delays all frequencies by <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mn>90</mn><mo>&#x02218;</mo></msup></mrow></math>. <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>cos</mi><mo stretchy="false">&#x00028;</mo><msub><mi>&#x003C9;</mi><mn>0</mn></msub><mi>t</mi><mo>&#x02212;</mo><msup><mn>90</mn><mo>&#x02218;</mo></msup><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>sin</mi><mo stretchy="false">&#x00028;</mo><msub><mi>&#x003C9;</mi><mn>0</mn></msub><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math>.*
+   *Answer: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>sin</mi><mo stretchy="false">&#x00028;</mo><msub><mi>&#x003C9;</mi><mn>0</mn></msub><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math>*
+
+2. An FM signal is given by <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>10</mn><mi>cos</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>&#x003C0;</mi><mo>&#x000D7;</mo><msup><mn>10</mn><mn>8</mn></msup><mi>t</mi><mo>&#x0002B;</mo><mn>5</mn><mi>sin</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>&#x003C0;</mi><mo>&#x000D7;</mo><msup><mn>10</mn><mn>3</mn></msup><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00029;</mo></mrow></math>. Determine the carrier frequency, modulating frequency, modulation index, and bandwidth.
+   *Hint: Compare with standard form <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>A</mi><mi>c</mi></msub><mi>cos</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>&#x003C0;</mi><msub><mi>f</mi><mi>c</mi></msub><mi>t</mi><mo>&#x0002B;</mo><mi>&#x003B2;</mi><mi>sin</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>&#x003C0;</mi><msub><mi>f</mi><mi>m</mi></msub><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00029;</mo></mrow></math>.*
+   *Answer: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>f</mi><mi>c</mi></msub><mo>&#x0003D;</mo><mn>100</mn></mrow></math> MHz, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>f</mi><mi>m</mi></msub><mo>&#x0003D;</mo><mn>1</mn></mrow></math> kHz, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B2;</mi><mo>&#x0003D;</mo><mn>5</mn></mrow></math>. <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mi>W</mi><mo>&#x0003D;</mo><mn>2</mn><mo stretchy="false">&#x00028;</mo><mn>1</mn><mtext>kHz</mtext><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><mn>5</mn><mo>&#x0002B;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>12</mn></mrow></math> kHz.*
+
+3. A standard AM transmission has a carrier power of 400 W and is modulated to a depth of 70%. What is the total transmitted power?
+   *Hint: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>P</mi><mi>t</mi></msub><mo>&#x0003D;</mo><msub><mi>P</mi><mi>c</mi></msub><mo stretchy="false">&#x00028;</mo><mn>1</mn><mo>&#x0002B;</mo><msup><mi>&#x003BC;</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo></mrow></math>.*
+   *Answer: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>P</mi><mi>t</mi></msub><mo>&#x0003D;</mo><mn>400</mn><mo stretchy="false">&#x00028;</mo><mn>1</mn><mo>&#x0002B;</mo><msup><mn>0.7</mn><mn>2</mn></msup><mo>&#x0002F;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>400</mn><mo stretchy="false">&#x00028;</mo><mn>1</mn><mo>&#x0002B;</mo><mn>0.49</mn><mo>&#x0002F;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>400</mn><mo stretchy="false">&#x00028;</mo><mn>1.245</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>498</mn></mrow></math> W.*
+</Section 6.3: Communication System (AEiE0603)>
+
+<hr />
+<Section 6.4: Data Communication and Information Theory (AEiE0604)>
+## 1. Introduction
+Data communication and information theory form the backbone of modern digital communication systems. For the NEC exam, understanding how analog signals are converted to digital form, how information is measured, and how data is reliably transmitted over noisy channels is crucial.
+
+## 2. Process of Analog to Digital Communication System
+The conversion of an analog signal to a digital format involves three main steps: Sampling, Quantization, and Encoding.
+
+> [!NOTE] Definition
+> **Analog to Digital Conversion**: The process of translating continuous-time, continuous-amplitude signals into discrete-time, discrete-amplitude digital signals.
+
+### Block Diagram of A/D Conversion
+1. **Sampler**: Converts continuous-time signal <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> to discrete-time signal <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>n</mi><msub><mi>T</mi><mi>s</mi></msub><mo stretchy="false">&#x00029;</mo></mrow></math>.
+2. **Quantizer**: Maps the continuous amplitude of each sample into a discrete set of levels.
+3. **Encoder**: Assigns a unique binary code to each quantization level.
+
+## 3. Sampling and Pulse Modulation Techniques
+Sampling theorem states that a bandlimited signal <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> with maximum frequency <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>f</mi><mi>m</mi></msub></mrow></math> can be perfectly reconstructed from its samples if the sampling rate <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>f</mi><mi>s</mi></msub></mrow></math> is:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>f</mi><mi>s</mi></msub><mo>&#x02265;</mo><mn>2</mn><msub><mi>f</mi><mi>m</mi></msub></mrow></math></div>
+
+**Pulse Modulation Types:**
+- **PAM (Pulse Amplitude Modulation)**: Amplitude of pulse varies with signal amplitude.
+- **PWM (Pulse Width Modulation)**: Width of pulse varies with signal amplitude.
+- **PPM (Pulse Position Modulation)**: Position of pulse varies with signal amplitude.
+- **PCM (Pulse Code Modulation)**: Analog signal is sampled, quantized, and encoded into binary digits.
+
+## 4. Pulse Code Modulation (PCM) and Quantization
+PCM is a standard method to digitally represent analog signals.
+
+### Types of Quantization
+1. **Uniform Quantization**: Step size <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi></mrow></math> is constant.
+2. **Non-uniform Quantization**: Step size varies. Smaller step sizes for smaller amplitudes (companding). e.g., <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BC;</mi></mrow></math>-law and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math>-law.
+
+### Quantization Noise
+The error introduced during quantization is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>q</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>x</mi><mi>q</mi></msub><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x02212;</mo><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math>. For uniform quantization with step size <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi></mrow></math>, the quantization error is uniformly distributed between <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>&#x00394;</mi><mo>&#x0002F;</mo><mn>2</mn></mrow></math> and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mo>&#x0002F;</mo><mn>2</mn></mrow></math>.
+
+The quantization noise power is:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>P</mi><mi>q</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><msup><mi>&#x00394;</mi><mn>2</mn></msup></mrow><mrow><mn>12</mn></mrow></mfrac></mrow></math></div>
+
+If the signal has peak-to-peak amplitude <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><msub><mi>V</mi><mrow><mi>p</mi><mi>e</mi><mi>a</mi><mi>k</mi></mrow></msub></mrow></math> and we use <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi></mrow></math> bits/sample, the number of levels <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>L</mi><mo>&#x0003D;</mo><msup><mn>2</mn><mi>n</mi></msup></mrow></math>. The step size is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mo>&#x0003D;</mo><mfrac><mrow><mn>2</mn><msub><mi>V</mi><mrow><mi>p</mi><mi>e</mi><mi>a</mi><mi>k</mi></mrow></msub></mrow><mrow><mi>L</mi></mrow></mfrac></mrow></math>.
+
+Signal-to-Quantization Noise Ratio (SQNR) for a full-scale sinusoidal signal:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>S</mi><mi>Q</mi><mi>N</mi><msub><mi>R</mi><mrow><mi>d</mi><mi>B</mi></mrow></msub><mo>&#x0003D;</mo><mn>1.76</mn><mo>&#x0002B;</mo><mn>6.02</mn><mi>n</mi><mtext>&#x000A0;dB</mtext></mrow></math></div>
+
+## 5. Information Theory and Measure of Information
+
+> [!NOTE] Definition
+> **Information (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>I</mi></mrow></math>)**: The amount of surprise or uncertainty resolved by the occurrence of an event. For a message with probability <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>I</mi><mo>&#x0003D;</mo><msub><mi>log</mi><mn>2</mn></msub><mo stretchy="false">&#x00028;</mo><mn>1</mn><mo>&#x0002F;</mo><mi>p</mi><mo stretchy="false">&#x00029;</mo></mrow></math> bits.
+
+### Entropy (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>H</mi></mrow></math>)
+The average information per source symbol.
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>H</mi><mo stretchy="false">&#x00028;</mo><mi>X</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x02212;</mo><msubsup><mo>&#x02211;</mo><mrow><mi>i</mi><mo>&#x0003D;</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mi>p</mi><mo stretchy="false">&#x00028;</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">&#x00029;</mo><msub><mi>log</mi><mn>2</mn></msub><mi>p</mi><mo stretchy="false">&#x00028;</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">&#x00029;</mo><mtext>&#x000A0;bits/symbol</mtext></mrow></math></div>
+Maximum entropy occurs when all symbols are equiprobable (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>H</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub><mo>&#x0003D;</mo><msub><mi>log</mi><mn>2</mn></msub><mi>n</mi></mrow></math>).
+
+### Source Coding
+Process of encoding information to reduce redundancy.
+- **Shannon-Fano Coding**
+- **Huffman Coding**
+Average code word length <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>L</mi><mo>&#x0003D;</mo><mo>&#x02211;</mo><mi>p</mi><mo stretchy="false">&#x00028;</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">&#x00029;</mo><msub><mi>n</mi><mi>i</mi></msub></mrow></math>. Coding efficiency <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B7;</mi><mo>&#x0003D;</mo><mi>H</mi><mo stretchy="false">&#x00028;</mo><mi>X</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mi>L</mi></mrow></math>.
+
+## 6. Shannon-Hartley Channel Capacity Theorem
+Defines the maximum error-free data rate <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>C</mi></mrow></math> that can be transmitted over a channel with bandwidth <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi></mrow></math> and signal-to-noise ratio <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>S</mi><mo>&#x0002F;</mo><mi>N</mi></mrow></math>.
+
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>C</mi><mo>&#x0003D;</mo><mi>B</mi><msub><mi>log</mi><mn>2</mn></msub><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mn>1</mn><mo>&#x0002B;</mo><mfrac><mrow><mi>S</mi></mrow><mrow><mi>N</mi></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mtext>&#x000A0;bps</mtext></mrow></math></div>
+
+As bandwidth <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mo>&#x02192;</mo><mo>&#x0221E;</mo></mrow></math>, capacity limits to <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>C</mi><mo>&#x0221E;</mo></msub><mo>&#x0003D;</mo><mn>1.44</mn><mfrac><mrow><mi>S</mi></mrow><mrow><msub><mi>N</mi><mn>0</mn></msub></mrow></mfrac></mrow></math>, where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>N</mi><mn>0</mn></msub></mrow></math> is noise power spectral density.
+
+## 7. Multiplexing
+Combining multiple signals into one for transmission over a shared medium.
+- **FDM (Frequency Division Multiplexing)**: Different frequency bands.
+- **TDM (Time Division Multiplexing)**: Different time slots (common in PCM).
+- **WDM (Wavelength Division Multiplexing)**: Optical fiber equivalent of FDM.
+
+## 8. Random Signals, White Noise, and Thermal Noise
+- **Random Process**: A collection of time functions (ensemble) defined by probabilistic models.
+- **Thermal Noise**: Generated by random thermal motion of electrons. Noise power <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>P</mi><mi>n</mi></msub><mo>&#x0003D;</mo><mi>k</mi><mi>T</mi><mi>B</mi></mrow></math>, where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi></mrow></math> is Boltzmann's constant, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>T</mi></mrow></math> is temperature, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi></mrow></math> is bandwidth.
+- **White Noise**: Noise whose power spectral density is uniform over all frequencies: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>S</mi><mi>n</mi></msub><mo stretchy="false">&#x00028;</mo><mi>f</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>N</mi><mn>0</mn></msub></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math>.
+
+## 9. Line Codes and Pulse Shaping
+Line coding maps digital data into electrical waveforms for baseband transmission.
+- **Unipolar NRZ**: 1 is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0002B;</mo><mi>V</mi></mrow></math>, 0 is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math>.
+- **Polar NRZ**: 1 is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0002B;</mo><mi>V</mi></mrow></math>, 0 is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>V</mi></mrow></math>.
+- **Manchester**: 1 is positive-to-negative transition, 0 is negative-to-positive transition. Self-clocking.
+- **AMI (Alternate Mark Inversion)**: 0 is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn><mi>V</mi></mrow></math>, 1 alternates between <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0002B;</mo><mi>V</mi></mrow></math> and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>V</mi></mrow></math>. No DC component.
+
+**Pulse Shaping**: Used to minimize Inter-Symbol Interference (ISI).
+Nyquist criterion for zero ISI: Raised Cosine Filter.
+
+## 10. Error Control Coding
+Adding redundancy to detect or correct errors.
+- **Parity Check**: Adds 1 bit to make total number of 1s even or odd.
+- **Block Codes**: Maps <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi></mrow></math> bits to <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi></mrow></math> bits (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi><mo>&#x0003E;</mo><mi>k</mi></mrow></math>). e.g., Hamming Codes.
+- **Convolutional Codes**: Generates parity bits continuously using shift registers.
+
+## Common Mistakes / Exam Tips
+
+> [!WARNING]
+> Confusing data rate with baud rate. Data rate (bps) = Baud rate (symbols/s) <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x000D7;</mo></mrow></math> bits per symbol.
+
+> [!TIP]
+> Memorize the PCM bandwidth formula: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mi>W</mi><mo>&#x02265;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><msub><mi>R</mi><mi>b</mi></msub></mrow></math>, where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mi>b</mi></msub><mo>&#x0003D;</mo><mi>n</mi><mo>&#x000B7;</mo><msub><mi>f</mi><mi>s</mi></msub></mrow></math>.
+
+## Quick Reference / Formula Summary
+
+> [!IMPORTANT]
+> - **Nyquist Rate**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>f</mi><mi>s</mi></msub><mo>&#x02265;</mo><mn>2</mn><msub><mi>f</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub></mrow></math>
+> - **Quantization Noise Power**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mfrac><mrow><msup><mi>&#x00394;</mi><mn>2</mn></msup></mrow><mrow><mn>12</mn></mrow></mfrac></mrow></math>
+> - **Entropy**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>H</mi><mo stretchy="false">&#x00028;</mo><mi>X</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x02212;</mo><mo>&#x02211;</mo><msub><mi>p</mi><mi>i</mi></msub><msub><mi>log</mi><mn>2</mn></msub><msub><mi>p</mi><mi>i</mi></msub></mrow></math>
+> - **Shannon Capacity**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>C</mi><mo>&#x0003D;</mo><mi>B</mi><msub><mi>log</mi><mn>2</mn></msub><mo stretchy="false">&#x00028;</mo><mn>1</mn><mo>&#x0002B;</mo><mi>S</mi><mo>&#x0002F;</mo><mi>N</mi><mo stretchy="false">&#x00029;</mo></mrow></math>
+
+## Practice Problems
+1. **Problem**: A continuous-time signal <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>10</mn><mi>sin</mi><mo stretchy="false">&#x00028;</mo><mn>1000</mn><mi>&#x003C0;</mi><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> is sampled at Nyquist rate. Calculate the sampling frequency.
+   **Answer Sketch**: Maximum frequency <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>f</mi><mi>m</mi></msub><mo>&#x0003D;</mo><mn>1000</mn><mi>&#x003C0;</mi><mo>&#x0002F;</mo><mn>2</mn><mi>&#x003C0;</mi><mo>&#x0003D;</mo><mn>500</mn></mrow></math> Hz. Nyquist rate <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>f</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mn>2</mn><msub><mi>f</mi><mi>m</mi></msub><mo>&#x0003D;</mo><mn>1000</mn></mrow></math> Hz.
+2. **Problem**: A telephone channel has <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mo>&#x0003D;</mo><mn>3</mn></mrow></math> kHz and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>S</mi><mo>&#x0002F;</mo><mi>N</mi><mo>&#x0003D;</mo><mn>30</mn></mrow></math> dB. Calculate channel capacity.
+   **Answer Sketch**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>S</mi><mo>&#x0002F;</mo><msub><mi>N</mi><mrow><mi>l</mi><mi>i</mi><mi>n</mi><mi>e</mi><mi>a</mi><mi>r</mi></mrow></msub><mo>&#x0003D;</mo><msup><mn>10</mn><mrow><mn>30</mn><mo>&#x0002F;</mo><mn>10</mn></mrow></msup><mo>&#x0003D;</mo><mn>1000</mn></mrow></math>. <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>C</mi><mo>&#x0003D;</mo><mn>3000</mn><msub><mi>log</mi><mn>2</mn></msub><mo stretchy="false">&#x00028;</mo><mn>1</mn><mo>&#x0002B;</mo><mn>1000</mn><mo stretchy="false">&#x00029;</mo><mo>&#x02248;</mo><mn>3000</mn><mo>&#x000D7;</mo><mn>9.96</mn><mo>&#x0003D;</mo><mn>29.8</mn></mrow></math> kbps.
+</Section 6.4: Data Communication and Information Theory (AEiE0604)>
+
+<hr />
+<Section 6.5: Signal and System (AEiE0605)>
+## 1. Introduction
+Signals and Systems is the mathematical foundation of communication, control, and signal processing. For the NEC exam, understanding both continuous-time and discrete-time domains, Fourier analysis, and LTI systems is essential.
+
+## 2. Basic Signal Definitions
+A signal is a function of one or more independent variables that contains information about the behavior or nature of some phenomenon.
+
+> [!NOTE] Definition
+> **Continuous-Time (CT) Signal**: Defined at every instant of time, e.g., <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math>.
+> **Discrete-Time (DT) Signal**: Defined only at discrete instants of time, e.g., <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow></math>.
+
+### Standard Elementary Signals
+- **Unit Step Function <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math>**:
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>1</mn></mrow></math> for <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi><mo>&#x02265;</mo><mn>0</mn></mrow></math>, and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math> for <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi><mo>&#x0003C;</mo><mn>0</mn></mrow></math>.
+- **Unit Impulse Function <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B4;</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math>** (Dirac delta):
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B4;</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>0</mn></mrow></math> for <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi><mo>&#x02260;</mo><mn>0</mn></mrow></math>, and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mo>&#x0222B;</mo><mrow><mo>&#x02212;</mo><mo>&#x0221E;</mo></mrow><mrow><mo>&#x0221E;</mo></mrow></msubsup><mi>&#x003B4;</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mi>d</mi><mi>t</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math>.
+- **Sinc Function**:
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mtext>sinc</mtext><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mfrac><mrow><mi>sin</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C0;</mi><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow><mrow><mi>&#x003C0;</mi><mi>t</mi></mrow></mfrac></mrow></math>.
+- **Signum Function**:
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mtext>sgn</mtext><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>1</mn></mrow></math> for <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi><mo>&#x0003E;</mo><mn>0</mn></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>1</mn></mrow></math> for <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi><mo>&#x0003C;</mo><mn>0</mn></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math> for <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>.
+
+## 3. LTI Systems and Convolution
+Linear Time-Invariant (LTI) systems satisfy both linearity (superposition) and time-invariance.
+
+### Impulse Response and Convolution
+The output <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> of a CT LTI system is the convolution of its input <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> and its impulse response <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>h</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math>.
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002A;</mo><mi>h</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msubsup><mo>&#x0222B;</mo><mrow><mo>&#x02212;</mo><mo>&#x0221E;</mo></mrow><mrow><mo>&#x0221E;</mo></mrow></msubsup><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C4;</mi><mo stretchy="false">&#x00029;</mo><mi>h</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo>&#x02212;</mo><mi>&#x003C4;</mi><mo stretchy="false">&#x00029;</mo><mi>d</mi><mi>&#x003C4;</mi></mrow></math></div>
+
+For DT systems:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>&#x0003D;</mo><mi>x</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>&#x0002A;</mo><mi>h</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>&#x0003D;</mo><msubsup><mo>&#x02211;</mo><mrow><mi>k</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mo>&#x0221E;</mo></mrow><mrow><mo>&#x0221E;</mo></mrow></msubsup><mi>x</mi><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mi>h</mi><mo stretchy="false">[</mo><mi>n</mi><mo>&#x02212;</mo><mi>k</mi><mo stretchy="false">]</mo></mrow></math></div>
+
+## 4. Continuous-Time Fourier Series (CTFS)
+Used for periodic CT signals. A periodic signal <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> with period <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>T</mi><mn>0</mn></msub></mrow></math> can be represented as:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msubsup><mo>&#x02211;</mo><mrow><mi>k</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mo>&#x0221E;</mo></mrow><mrow><mo>&#x0221E;</mo></mrow></msubsup><msub><mi>c</mi><mi>k</mi></msub><msup><mi>e</mi><mrow><mi>j</mi><mi>k</mi><msub><mi>&#x003C9;</mi><mn>0</mn></msub><mi>t</mi></mrow></msup></mrow></math></div>
+where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C9;</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>2</mn><mi>&#x003C0;</mi><mo>&#x0002F;</mo><msub><mi>T</mi><mn>0</mn></msub></mrow></math> and the coefficients are:
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>c</mi><mi>k</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msub><mi>T</mi><mn>0</mn></msub></mrow></mfrac><msub><mo>&#x0222B;</mo><mrow><msub><mi>T</mi><mn>0</mn></msub></mrow></msub><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><msup><mi>e</mi><mrow><mo>&#x02212;</mo><mi>j</mi><mi>k</mi><msub><mi>&#x003C9;</mi><mn>0</mn></msub><mi>t</mi></mrow></msup><mi>d</mi><mi>t</mi></mrow></math></div>
+
+### Properties of CTFS
+- **Linearity**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>b</mi><mi>y</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x02194;</mo><mi>a</mi><msub><mi>c</mi><mi>k</mi></msub><mo>&#x0002B;</mo><mi>b</mi><msub><mi>d</mi><mi>k</mi></msub></mrow></math>
+- **Time Shifting**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="false">&#x00029;</mo><mo>&#x02194;</mo><msub><mi>c</mi><mi>k</mi></msub><msup><mi>e</mi><mrow><mo>&#x02212;</mo><mi>j</mi><mi>k</mi><msub><mi>&#x003C9;</mi><mn>0</mn></msub><msub><mi>t</mi><mn>0</mn></msub></mrow></msup></mrow></math>
+- **Parseval's Theorem**: Average power <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msub><mi>T</mi><mn>0</mn></msub></mrow></mfrac><msub><mo>&#x0222B;</mo><mrow><msub><mi>T</mi><mn>0</mn></msub></mrow></msub><mo stretchy="false">&#x0007C;</mo><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><msup><mo stretchy="false">&#x0007C;</mo><mn>2</mn></msup><mi>d</mi><mi>t</mi><mo>&#x0003D;</mo><mo>&#x02211;</mo><mo stretchy="false">&#x0007C;</mo><msub><mi>c</mi><mi>k</mi></msub><msup><mo stretchy="false">&#x0007C;</mo><mn>2</mn></msup></mrow></math>.
+
+## 5. Continuous-Time Fourier Transform (CTFT)
+Used for aperiodic signals.
+**Analysis Equation (Forward Transform):**
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>X</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msubsup><mo>&#x0222B;</mo><mrow><mo>&#x02212;</mo><mo>&#x0221E;</mo></mrow><mrow><mo>&#x0221E;</mo></mrow></msubsup><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><msup><mi>e</mi><mrow><mo>&#x02212;</mo><mi>j</mi><mi>&#x003C9;</mi><mi>t</mi></mrow></msup><mi>d</mi><mi>t</mi></mrow></math></div>
+**Synthesis Equation (Inverse Transform):**
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mi>&#x003C0;</mi></mrow></mfrac><msubsup><mo>&#x0222B;</mo><mrow><mo>&#x02212;</mo><mo>&#x0221E;</mo></mrow><mrow><mo>&#x0221E;</mo></mrow></msubsup><mi>X</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mo stretchy="false">&#x00029;</mo><msup><mi>e</mi><mrow><mi>j</mi><mi>&#x003C9;</mi><mi>t</mi></mrow></msup><mi>d</mi><mi>&#x003C9;</mi></mrow></math></div>
+
+### Properties of CTFT
+| Property | Time Domain <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> | Frequency Domain <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>X</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mo stretchy="false">&#x00029;</mo></mrow></math> |
+| :--- | :--- | :--- |
+| Linearity | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>b</mi><msub><mi>x</mi><mn>2</mn></msub><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><msub><mi>X</mi><mn>1</mn></msub><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>b</mi><msub><mi>X</mi><mn>2</mn></msub><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mo stretchy="false">&#x00029;</mo></mrow></math> |
+| Time Shift | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="false">&#x00029;</mo></mrow></math> | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>X</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mo stretchy="false">&#x00029;</mo><msup><mi>e</mi><mrow><mo>&#x02212;</mo><mi>j</mi><mi>&#x003C9;</mi><msub><mi>t</mi><mn>0</mn></msub></mrow></msup></mrow></math> |
+| Frequency Shift | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>&#x003C9;</mi><mn>0</mn></msub><mi>t</mi></mrow></msup></mrow></math> | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>X</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mo>&#x02212;</mo><msub><mi>&#x003C9;</mi><mn>0</mn></msub><mo stretchy="false">&#x00029;</mo></mrow></math> |
+| Convolution | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002A;</mo><msub><mi>x</mi><mn>2</mn></msub><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>X</mi><mn>1</mn></msub><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mo stretchy="false">&#x00029;</mo><msub><mi>X</mi><mn>2</mn></msub><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mo stretchy="false">&#x00029;</mo></mrow></math> |
+| Multiplication | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><msub><mi>x</mi><mn>2</mn></msub><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> | <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mi>&#x003C0;</mi></mrow></mfrac><msub><mi>X</mi><mn>1</mn></msub><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002A;</mo><msub><mi>X</mi><mn>2</mn></msub><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mo stretchy="false">&#x00029;</mo></mrow></math> |
+
+## 6. Discrete-Time Fourier Series (DTFS) and Transform (DTFT)
+**DTFS (For periodic DT signals with period <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>N</mi></mrow></math>):**
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>&#x0003D;</mo><msub><mo>&#x02211;</mo><mrow><mi>k</mi><mo>&#x0003D;</mo><mi>&#x027E8;</mi><mi>N</mi><mi>&#x027E9;</mi></mrow></msub><msub><mi>a</mi><mi>k</mi></msub><msup><mi>e</mi><mrow><mi>j</mi><mi>k</mi><msub><mi>&#x003A9;</mi><mn>0</mn></msub><mi>n</mi></mrow></msup></mrow></math></div>
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mi>k</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>N</mi></mrow></mfrac><msub><mo>&#x02211;</mo><mrow><mi>n</mi><mo>&#x0003D;</mo><mi>&#x027E8;</mi><mi>N</mi><mi>&#x027E9;</mi></mrow></msub><mi>x</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><msup><mi>e</mi><mrow><mo>&#x02212;</mo><mi>j</mi><mi>k</mi><msub><mi>&#x003A9;</mi><mn>0</mn></msub><mi>n</mi></mrow></msup></mrow></math></div>
+
+**DTFT (For aperiodic DT signals):**
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>X</mi><mo stretchy="false">&#x00028;</mo><msup><mi>e</mi><mrow><mi>j</mi><mi>&#x003A9;</mi></mrow></msup><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msubsup><mo>&#x02211;</mo><mrow><mi>n</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mo>&#x0221E;</mo></mrow><mrow><mo>&#x0221E;</mo></mrow></msubsup><mi>x</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><msup><mi>e</mi><mrow><mo>&#x02212;</mo><mi>j</mi><mi>&#x003A9;</mi><mi>n</mi></mrow></msup></mrow></math></div>
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mi>&#x003C0;</mi></mrow></mfrac><msubsup><mo>&#x0222B;</mo><mrow><mo>&#x02212;</mo><mi>&#x003C0;</mi></mrow><mrow><mi>&#x003C0;</mi></mrow></msubsup><mi>X</mi><mo stretchy="false">&#x00028;</mo><msup><mi>e</mi><mrow><mi>j</mi><mi>&#x003A9;</mi></mrow></msup><mo stretchy="false">&#x00029;</mo><msup><mi>e</mi><mrow><mi>j</mi><mi>&#x003A9;</mi><mi>n</mi></mrow></msup><mi>d</mi><mi>&#x003A9;</mi></mrow></math></div>
+
+*Note that <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>X</mi><mo stretchy="false">&#x00028;</mo><msup><mi>e</mi><mrow><mi>j</mi><mi>&#x003A9;</mi></mrow></msup><mo stretchy="false">&#x00029;</mo></mrow></math> is always periodic with period <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><mi>&#x003C0;</mi></mrow></math>.*
+
+## 7. Energy and Power Spectral Densities
+- **Energy Spectral Density (ESD)**: For energy signals. <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>E</mi><mo>&#x0003D;</mo><mo>&#x0222B;</mo><mo stretchy="false">&#x0007C;</mo><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><msup><mo stretchy="false">&#x0007C;</mo><mn>2</mn></msup><mi>d</mi><mi>t</mi><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mi>&#x003C0;</mi></mrow></mfrac><mo>&#x0222B;</mo><mo stretchy="false">&#x0007C;</mo><mi>X</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mo stretchy="false">&#x00029;</mo><msup><mo stretchy="false">&#x0007C;</mo><mn>2</mn></msup><mi>d</mi><mi>&#x003C9;</mi></mrow></math>. ESD <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003A8;</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo stretchy="false">&#x0007C;</mo><mi>X</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mo stretchy="false">&#x00029;</mo><msup><mo stretchy="false">&#x0007C;</mo><mn>2</mn></msup></mrow></math>.
+- **Power Spectral Density (PSD)**: For power signals (e.g., periodic or random). <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>S</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mo stretchy="false">&#x00029;</mo></mrow></math> is the Fourier transform of the autocorrelation function <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub><mo stretchy="false">&#x00028;</mo><mi>&#x003C4;</mi><mo stretchy="false">&#x00029;</mo></mrow></math>.
+
+## Common Mistakes / Exam Tips
+
+> [!WARNING]
+> Do not confuse <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002A;</mo><mi>h</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> (convolution) with normal multiplication. Convolution in the time domain equates to multiplication in the frequency domain.
+
+> [!TIP]
+> Remember that the Fourier transform of an impulse <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B4;</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn></mrow></math>, and the FT of a constant <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn></mrow></math> is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><mi>&#x003C0;</mi><mi>&#x003B4;</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mo stretchy="false">&#x00029;</mo></mrow></math>.
+
+## Quick Reference / Formula Summary
+
+> [!IMPORTANT]
+> - **Convolution**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x0222B;</mo><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C4;</mi><mo stretchy="false">&#x00029;</mo><mi>h</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo>&#x02212;</mo><mi>&#x003C4;</mi><mo stretchy="false">&#x00029;</mo><mi>d</mi><mi>&#x003C4;</mi></mrow></math>
+> - **CTFT of <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>e</mi><mrow><mo>&#x02212;</mo><mi>a</mi><mi>t</mi></mrow></msup><mi>u</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math>**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mi>a</mi><mo>&#x0002B;</mo><mi>j</mi><mi>&#x003C9;</mi></mrow></mfrac></mrow></math>
+> - **Parseval's Theorem**: Energy in time domain equals energy in frequency domain.
+
+## Practice Problems
+1. **Problem**: Find the CTFT of <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msup><mi>e</mi><mrow><mo>&#x02212;</mo><mi>a</mi><mi>t</mi></mrow></msup><mi>u</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> for <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0003E;</mo><mn>0</mn></mrow></math>.
+   **Answer Sketch**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>X</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003C9;</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msubsup><mo>&#x0222B;</mo><mrow><mn>0</mn></mrow><mrow><mo>&#x0221E;</mo></mrow></msubsup><msup><mi>e</mi><mrow><mo>&#x02212;</mo><mi>a</mi><mi>t</mi></mrow></msup><msup><mi>e</mi><mrow><mo>&#x02212;</mo><mi>j</mi><mi>&#x003C9;</mi><mi>t</mi></mrow></msup><mi>d</mi><mi>t</mi><mo>&#x0003D;</mo><msubsup><mo>&#x0222B;</mo><mn>0</mn><mo>&#x0221E;</mo></msubsup><msup><mi>e</mi><mrow><mo>&#x02212;</mo><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo>&#x0002B;</mo><mi>j</mi><mi>&#x003C9;</mi><mo stretchy="false">&#x00029;</mo><mi>t</mi></mrow></msup><mi>d</mi><mi>t</mi><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>a</mi><mo>&#x0002B;</mo><mi>j</mi><mi>&#x003C9;</mi></mrow></mfrac></mrow></math>.
+2. **Problem**: A system has impulse response <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>h</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>u</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> and input <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>&#x003B4;</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>&#x003B4;</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow></math>. Find <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math>.
+   **Answer Sketch**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>x</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002A;</mo><mi>h</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>&#x003B4;</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002A;</mo><mi>u</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>&#x003B4;</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0002A;</mo><mi>u</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>u</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>u</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow></math>.
+</Section 6.5: Signal and System (AEiE0605)>
+
+<hr />
+<Section 6.6: Digital Signal Processing (AEiE0606)>
+## 1. Introduction
+Digital Signal Processing (DSP) covers the manipulation of signals after they have been converted to a digital format. Key exam areas include z-transforms, DFT/FFT, and the design of digital filters (IIR and FIR).
+
+## 2. The z-Transform
+The z-transform is the discrete-time equivalent of the Laplace transform.
+
+> [!NOTE] Definition
+> **z-transform**: For a discrete sequence <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow></math>, the two-sided z-transform is defined as:
+> <div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>X</mi><mo stretchy="false">&#x00028;</mo><mi>z</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msubsup><mo>&#x02211;</mo><mrow><mi>n</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mo>&#x0221E;</mo></mrow><mrow><mo>&#x0221E;</mo></mrow></msubsup><mi>x</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><msup><mi>z</mi><mrow><mo>&#x02212;</mo><mi>n</mi></mrow></msup></mrow></math></div>
+> where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math> is a complex variable.
+
+### Region of Convergence (ROC)
+The set of values of <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math> for which the sum converges.
+- **Right-sided sequence (causal)**: ROC is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x0007C;</mo><mi>z</mi><mo stretchy="false">&#x0007C;</mo><mo>&#x0003E;</mo><msub><mi>r</mi><mn>1</mn></msub></mrow></math> (outside a circle).
+- **Left-sided sequence (anti-causal)**: ROC is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x0007C;</mo><mi>z</mi><mo stretchy="false">&#x0007C;</mo><mo>&#x0003C;</mo><msub><mi>r</mi><mn>2</mn></msub></mrow></math> (inside a circle).
+- **Two-sided sequence**: ROC is an annular ring <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>r</mi><mn>1</mn></msub><mo>&#x0003C;</mo><mo stretchy="false">&#x0007C;</mo><mi>z</mi><mo stretchy="false">&#x0007C;</mo><mo>&#x0003C;</mo><msub><mi>r</mi><mn>2</mn></msub></mrow></math>.
+
+### Properties of z-transform
+- **Time Shifting**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">[</mo><mi>n</mi><mo>&#x02212;</mo><mi>k</mi><mo stretchy="false">]</mo><mo>&#x02194;</mo><msup><mi>z</mi><mrow><mo>&#x02212;</mo><mi>k</mi></mrow></msup><mi>X</mi><mo stretchy="false">&#x00028;</mo><mi>z</mi><mo stretchy="false">&#x00029;</mo></mrow></math>
+- **Convolution**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>&#x0002A;</mo><msub><mi>x</mi><mn>2</mn></msub><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>&#x02194;</mo><msub><mi>X</mi><mn>1</mn></msub><mo stretchy="false">&#x00028;</mo><mi>z</mi><mo stretchy="false">&#x00029;</mo><msub><mi>X</mi><mn>2</mn></msub><mo stretchy="false">&#x00028;</mo><mi>z</mi><mo stretchy="false">&#x00029;</mo></mrow></math>
+- **Parseval's Theorem**: Energy of the signal can be calculated by integrating over a closed contour in the z-plane.
+
+## 3. System Transfer Function and Stability
+An LTI system with impulse response <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>h</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow></math> has a transfer function <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>H</mi><mo stretchy="false">&#x00028;</mo><mi>z</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x02211;</mo><mi>h</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><msup><mi>z</mi><mrow><mo>&#x02212;</mo><mi>n</mi></mrow></msup></mrow></math>.
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>Y</mi><mo stretchy="false">&#x00028;</mo><mi>z</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>X</mi><mo stretchy="false">&#x00028;</mo><mi>z</mi><mo stretchy="false">&#x00029;</mo><mi>H</mi><mo stretchy="false">&#x00028;</mo><mi>z</mi><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+
+### Causality and Stability (Pole-Zero Relationship)
+- **Causality**: A system is causal if the ROC of <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>H</mi><mo stretchy="false">&#x00028;</mo><mi>z</mi><mo stretchy="false">&#x00029;</mo></mrow></math> is the exterior of a circle and includes infinity (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi><mo>&#x0003D;</mo><mo>&#x0221E;</mo></mrow></math>).
+- **Stability**: An LTI system is Bounded-Input Bounded-Output (BIBO) stable if and only if the ROC includes the unit circle (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x0007C;</mo><mi>z</mi><mo stretchy="false">&#x0007C;</mo><mo>&#x0003D;</mo><mn>1</mn></mrow></math>). For a causal system, this means **all poles must lie strictly inside the unit circle** (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x0007C;</mo><msub><mi>p</mi><mi>k</mi></msub><mo stretchy="false">&#x0007C;</mo><mo>&#x0003C;</mo><mn>1</mn></mrow></math>).
+
+## 4. Discrete Fourier Transform (DFT)
+The DFT computes discrete frequency samples of a finite-duration discrete-time signal.
+
+**N-point DFT:**
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>X</mi><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mo>&#x0003D;</mo><msubsup><mo>&#x02211;</mo><mrow><mi>n</mi><mo>&#x0003D;</mo><mn>0</mn></mrow><mrow><mi>N</mi><mo>&#x02212;</mo><mn>1</mn></mrow></msubsup><mi>x</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><msubsup><mi>W</mi><mi>N</mi><mrow><mi>k</mi><mi>n</mi></mrow></msubsup><mspace width="1em" /><mtext>for&#x000A0;</mtext><mi>k</mi><mo>&#x0003D;</mo><mn>0</mn><mo>&#x0002C;</mo><mn>1</mn><mo>&#x0002C;</mo><mo>&#x02026;</mo><mo>&#x0002C;</mo><mi>N</mi><mo>&#x02212;</mo><mn>1</mn></mrow></math></div>
+where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>W</mi><mi>N</mi></msub><mo>&#x0003D;</mo><msup><mi>e</mi><mrow><mo>&#x02212;</mo><mi>j</mi><mn>2</mn><mi>&#x003C0;</mi><mo>&#x0002F;</mo><mi>N</mi></mrow></msup></mrow></math> is the twiddle factor.
+
+**Inverse DFT (IDFT):**
+<div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>N</mi></mrow></mfrac><msubsup><mo>&#x02211;</mo><mrow><mi>k</mi><mo>&#x0003D;</mo><mn>0</mn></mrow><mrow><mi>N</mi><mo>&#x02212;</mo><mn>1</mn></mrow></msubsup><mi>X</mi><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><msubsup><mi>W</mi><mi>N</mi><mrow><mo>&#x02212;</mo><mi>k</mi><mi>n</mi></mrow></msubsup><mspace width="1em" /><mtext>for&#x000A0;</mtext><mi>n</mi><mo>&#x0003D;</mo><mn>0</mn><mo>&#x0002C;</mo><mn>1</mn><mo>&#x0002C;</mo><mo>&#x02026;</mo><mo>&#x0002C;</mo><mi>N</mi><mo>&#x02212;</mo><mn>1</mn></mrow></math></div>
+
+### Properties of DFT and Circular Convolution
+- Multiplication of two DFTs <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>Y</mi><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mo>&#x0003D;</mo><msub><mi>X</mi><mn>1</mn></msub><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><msub><mi>X</mi><mn>2</mn></msub><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo></mrow></math> corresponds to the **circular convolution** of their time-domain sequences <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>&#x0003D;</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>&#x0229B;</mo><msub><mi>x</mi><mn>2</mn></msub><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow></math>.
+- Circular convolution is evaluated over length <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>N</mi></mrow></math>. To make circular convolution equivalent to linear convolution, zero-padding to length <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>N</mi><mo>&#x02265;</mo><msub><mi>L</mi><mn>1</mn></msub><mo>&#x0002B;</mo><msub><mi>L</mi><mn>2</mn></msub><mo>&#x02212;</mo><mn>1</mn></mrow></math> is required.
+
+## 5. Infinite Impulse Response (IIR) Filter Design
+IIR filters have an infinite number of non-zero terms in their impulse response. They are often designed from continuous-time analog filters (Butterworth, Chebyshev) by mapping the s-plane to the z-plane.
+
+### Impulse-Invariant Method
+Maps the analog impulse response <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>h</mi><mi>a</mi></msub><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math> to the digital impulse response <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>h</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>&#x0003D;</mo><mi>T</mi><msub><mi>h</mi><mi>a</mi></msub><mo stretchy="false">&#x00028;</mo><mi>n</mi><mi>T</mi><mo stretchy="false">&#x00029;</mo></mrow></math>.
+- Poles in s-plane map to <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi><mo>&#x0003D;</mo><msup><mi>e</mi><mrow><mi>s</mi><mi>T</mi></mrow></msup></mrow></math>.
+- Drawback: Subject to aliasing if the analog filter is not strictly bandlimited. (Mainly used for low-pass and band-pass filters).
+
+### Bilinear Transformation (For context, though syllabus highlights impulse-invariant)
+Maps the entire <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>j</mi><mi>&#x003C9;</mi></mrow></math> axis onto the unit circle via <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mfrac><mrow><mn>2</mn></mrow><mrow><mi>T</mi></mrow></mfrac><mfrac><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mi>z</mi><mrow><mo>&#x02212;</mo><mn>1</mn></mrow></msup></mrow><mrow><mn>1</mn><mo>&#x0002B;</mo><msup><mi>z</mi><mrow><mo>&#x02212;</mo><mn>1</mn></mrow></msup></mrow></mfrac></mrow></math>. Avoids aliasing but introduces frequency warping.
+
+## 6. Finite Impulse Response (FIR) Filter Design
+FIR filters are inherently stable, can have exact linear phase, but require higher orders than IIR filters for the same magnitude specifications.
+
+### Fourier Approximation (Windowing Method)
+An ideal filter has a rectangular frequency response, corresponding to a sinc function impulse response <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>h</mi><mi>d</mi></msub><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow></math> which is infinite and non-causal.
+To make it finite and causal:
+1. Truncate <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>h</mi><mi>d</mi></msub><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow></math> to length <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>N</mi></mrow></math>.
+2. Shift by <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>N</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mn>2</mn></mrow></math>.
+3. Multiply by a window function <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>w</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow></math> to reduce the Gibbs phenomenon (ripples).
+   <div class="math-block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>h</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>&#x0003D;</mo><msub><mi>h</mi><mi>d</mi></msub><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>&#x000B7;</mo><mi>w</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow></math></div>
+
+**Common Window Functions:**
+- **Rectangular**: Sharpest transition, but largest sidelobes (ringing).
+- **Hanning / Hamming**: Better sidelobe suppression, wider transition band.
+- **Blackman**: Very good sidelobe suppression, widest transition band.
+
+## Common Mistakes / Exam Tips
+
+> [!WARNING]
+> In DFT, index <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi></mrow></math> represents digital frequency <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C9;</mi><mi>k</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>2</mn><mi>&#x003C0;</mi><mi>k</mi></mrow><mrow><mi>N</mi></mrow></mfrac></mrow></math>. Do not confuse it with analog frequency.
+
+> [!TIP]
+> Stability of causal IIR filter: **All poles inside <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x0007C;</mo><mi>z</mi><mo stretchy="false">&#x0007C;</mo><mo>&#x0003D;</mo><mn>1</mn></mrow></math>**.
+> FIR filter linear phase condition: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>h</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow></math> must be symmetric or anti-symmetric.
+
+## Quick Reference / Formula Summary
+
+> [!IMPORTANT]
+> - **z-transform**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>X</mi><mo stretchy="false">&#x00028;</mo><mi>z</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x02211;</mo><mi>x</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><msup><mi>z</mi><mrow><mo>&#x02212;</mo><mi>n</mi></mrow></msup></mrow></math>
+> - **DFT**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>X</mi><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mo>&#x0003D;</mo><mo>&#x02211;</mo><mi>x</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><msup><mi>e</mi><mrow><mo>&#x02212;</mo><mi>j</mi><mn>2</mn><mi>&#x003C0;</mi><mi>k</mi><mi>n</mi><mo>&#x0002F;</mo><mi>N</mi></mrow></msup></mrow></math>
+> - **FIR Windowing**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>h</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>&#x0003D;</mo><msub><mi>h</mi><mrow><mi>i</mi><mi>d</mi><mi>e</mi><mi>a</mi><mi>l</mi></mrow></msub><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>&#x000B7;</mo><mi>w</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow></math>
+
+## Practice Problems
+1. **Problem**: Find the z-transform of <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>&#x0003D;</mo><msup><mi>a</mi><mi>n</mi></msup><mi>u</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow></math> and its ROC.
+   **Answer Sketch**: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>X</mi><mo stretchy="false">&#x00028;</mo><mi>z</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msubsup><mo>&#x02211;</mo><mrow><mi>n</mi><mo>&#x0003D;</mo><mn>0</mn></mrow><mrow><mo>&#x0221E;</mo></mrow></msubsup><msup><mi>a</mi><mi>n</mi></msup><msup><mi>z</mi><mrow><mo>&#x02212;</mo><mi>n</mi></mrow></msup><mo>&#x0003D;</mo><mo>&#x02211;</mo><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo>&#x0002F;</mo><mi>z</mi><msup><mo stretchy="false">&#x00029;</mo><mi>n</mi></msup><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><mi>a</mi><msup><mi>z</mi><mrow><mo>&#x02212;</mo><mn>1</mn></mrow></msup></mrow></mfrac><mo>&#x0003D;</mo><mfrac><mrow><mi>z</mi></mrow><mrow><mi>z</mi><mo>&#x02212;</mo><mi>a</mi></mrow></mfrac></mrow></math>. ROC: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x0007C;</mo><mi>z</mi><mo stretchy="false">&#x0007C;</mo><mo>&#x0003E;</mo><mo stretchy="false">&#x0007C;</mo><mi>a</mi><mo stretchy="false">&#x0007C;</mo></mrow></math>.
+2. **Problem**: A causal LTI system has transfer function <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>H</mi><mo stretchy="false">&#x00028;</mo><mi>z</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><mn>2</mn><msup><mi>z</mi><mrow><mo>&#x02212;</mo><mn>1</mn></mrow></msup></mrow></mfrac></mrow></math>. Is it stable?
+   **Answer Sketch**: Pole is at <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi><mo>&#x0003D;</mo><mn>2</mn></mrow></math>. Since <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x0007C;</mo><mn>2</mn><mo stretchy="false">&#x0007C;</mo><mo>&#x0003E;</mo><mn>1</mn></mrow></math>, pole is outside unit circle. The system is unstable.
+</Section 6.6: Digital Signal Processing (AEiE0606)>
+
+<hr />
+    
+    <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode">&#9789;</button>
+    <script>
+    (function() {
+        var toggle = document.getElementById('darkModeToggle');
+        var body = document.body;
+        var saved = localStorage.getItem('darkMode');
+        if (saved === 'true') {
+            body.classList.add('dark-mode');
+            toggle.innerHTML = '&#9788;';
+        }
+        toggle.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            var isDark = body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            toggle.innerHTML = isDark ? '&#9788;' : '&#9789;';
+        });
+    })();
+    </script>
+    
+</body>
+</html>

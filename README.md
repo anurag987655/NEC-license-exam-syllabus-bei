@@ -160,31 +160,37 @@ This repository provides exhaustive, high-yield revision notes, theoretical expl
 
 ---
 
-## 🛠️ Building Textbooks & PDFs
+## Building Textbooks & PDFs
 
-The repository includes a Python automation script (`build_pdf.py`) that parses Markdown files, applies custom academic CSS stylesheets (with print-friendly headers, footers, callout boxes, and formatted formulas), and renders ready-to-print PDFs.
+The repository includes a Python build script (`build_pdf.py`) that parses Markdown files, converts LaTeX math to MathML, applies academic CSS styling, and renders ready-to-print HTML/PDF textbooks for all 10 chapters.
 
 ### Prerequisites
 
-Install the required Python packages:
-
 ```bash
-pip install markdown weasyprint
+pip install -r requirements.txt
 ```
 
-*(Optional fallback: `pip install pdfkit` with `wkhtmltopdf` installed).*
-
-### Generate PDF / HTML
-
-To compile the textbook:
+### Generate HTML / PDF
 
 ```bash
-python build_pdf.py
+# Build all chapters (HTML + PDF)
+python build_pdf.py --all
+
+# Build specific chapters
+python build_pdf.py 1 2 6
+
+# Build Chapter 1 HTML only (no PDF)
+python build_pdf.py 1 --html-only
 ```
 
-The output will be generated as:
-- `NEC_Chapter1_Complete_Textbook.html`
-- `NEC_Chapter1_Complete_Textbook.pdf`
+Output files: `NEC_Chapter{N}_Complete_Textbook.html` and `NEC_Chapter{N}_Complete_Textbook.pdf`
+
+### Features
+
+- **LaTeX Rendering**: Math formulas converted to MathML via `latex2mathml`, with KaTeX fallback in browser
+- **Dark Mode**: Toggle button in HTML output (bottom-right corner)
+- **Responsive Design**: Works on mobile devices
+- **Print-Optimized**: A4 layout with headers, footers, and page breaks for PDF
 
 ---
 
