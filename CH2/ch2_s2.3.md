@@ -3,7 +3,7 @@
 > [!NOTE]
 > **Syllabus Coverage:** RS Flip-Flops, Gated Flip-Flops, Edge Triggered Flip-Flops, Master-Slave Flip-Flops. Types of Registers, Applications of Shift Registers, Asynchronous Counters, Synchronous Counters.
 
-## :book: 2.3.1 Introduction to Sequential Circuits
+## 📖 2.3.1 Introduction to Sequential Circuits
 
 Combinational logic circuits are memoryless; their outputs depend only on their current inputs. Sequential logic circuits, however, have "memory." Their outputs depend not only on the present inputs but also on the past sequence of inputs. This is achieved by introducing feedback loops that retain past states.
 
@@ -427,7 +427,7 @@ Data can be moved in and out of registers serially (one bit at a time) or in par
 
 ---
 
-## :wrench: 2.3.11 Shift Register Applications
+## 🔧 2.3.11 Shift Register Applications
 
 *   **Serial-to-Parallel Conversion:** Using SIPO, communication protocols like UART or SPI take a single incoming data wire and convert it into a parallel byte for the CPU.
 *   **Parallel-to-Serial Conversion:** Using PISO, the CPU can send an 8-bit byte over a single wire (USB, Ethernet).

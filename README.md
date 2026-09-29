@@ -7,6 +7,8 @@
 
 A comprehensive, textbook-style preparation repository strictly aligned with the **Nepal Engineering Council (NEC)** licensure examination syllabus for **Electronics, Communication and Information Engineering**.
 
+**[Open the styled study site](https://anurag987655.github.io/NEC-license-exam-syllabus-bei/)** for the formatted chapter books with rendered equations.
+
 ---
 
 ## 📌 Table of Contents

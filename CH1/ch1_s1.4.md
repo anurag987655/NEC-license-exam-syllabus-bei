@@ -3,7 +3,7 @@
 > [!NOTE]
 > **Syllabus Coverage:** Semiconductor diode and its characteristics, BJT Configuration and biasing, small and large signal model, working principle and application of MOSFET and CMOS.
 
-## :book: Introduction
+## 📖 Introduction
 Semiconductor devices form the fundamental building blocks of modern electronics. From a simple diode rectifying AC power to billions of CMOS transistors inside a microprocessor, understanding how semiconductors behave under various electrical conditions is critical for any electrical or electronics engineer. This section covers the fundamental physics of semiconductors, diodes, BJTs, MOSFETs, and CMOS technology.
 
 ---

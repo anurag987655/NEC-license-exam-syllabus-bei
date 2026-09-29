@@ -1,6 +1,6 @@
 ## Section Data Modeling (AEiE0703)
 
-## :book: 1. Introduction
+## 📖 1. Introduction
 Data modeling and database design are critical for building scalable, reliable software systems. This section covers the conceptual models (like ER diagrams) and theoretical foundations (like normalization) required to design relational databases correctly. This is heavily tested in the NEC exams.
 
 ## 2. Basic Concept: Abstraction, Schema, and Instances
@@ -94,7 +94,7 @@ CREATE VIEW HighEarners AS
 SELECT Name, Salary FROM Employee WHERE Salary > 80000;
 ```
 
-## :bulb: Common Mistakes / Exam Tips
+## 💡 Common Mistakes / Exam Tips
 
 > [!WARNING]
 > BCNF is stricter than 3NF. A relation in BCNF is always in 3NF, but a relation in 3NF is not necessarily in BCNF.
@@ -102,13 +102,13 @@ SELECT Name, Salary FROM Employee WHERE Salary > 80000;
 > [!TIP]
 > When asked about ER Diagram conversions to tables: An M:N relationship always requires a separate table bridging the two entity tables.
 
-## :memo: Quick Reference / Formula Summary
+## 📝 Quick Reference / Formula Summary
 
 > [!IMPORTANT]
 > - Normalization progression: 1NF (Atomic) -> 2NF (No partial dependency) -> 3NF (No transitive dependency) -> BCNF (LHS is superkey).
 > - Strong Entity = Primary Key; Weak Entity = Identifying Relationship + Partial Key.
 
-## :pencil: Practice Problems
+## ✏️ Practice Problems
 1. Define a schema $R(A, B, C, D)$ with FDs: $A \rightarrow B$, $B \rightarrow C$. Determine the highest normal form of $R$.
    - *Sketch:* The key is $A$ (or part of it). $B \rightarrow C$ is a transitive dependency. Thus, it's not in 3NF. If $A$ is the sole key, it's in 2NF.
 2. Differentiate between logical and physical data independence.

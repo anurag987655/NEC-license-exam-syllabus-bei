@@ -266,7 +266,7 @@ def build_chapter(chapter_num, args):
 {css}
     </style>
 </head>
-<body>
+<body class="markdown-preview-view">
     {title_page}
     {toc}
     {body}

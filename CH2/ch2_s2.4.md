@@ -1,14 +1,14 @@
 # Section 2.4: Microprocessor (AExE0204)
 
-## :book: 1. Introduction
+## 📖 1. Introduction
 The microprocessor is the heart and brain of any computing system. In the context of the NEC Registration Exam, understanding the internal architecture, features, and assembly language programming of the Intel 8085 microprocessor is crucial. The 8085 serves as the foundational 8-bit architecture from which modern processors have evolved, providing essential insights into instruction execution, bus architecture, memory interfacing, and hardware-software interaction. 
 
-## :bulb: 2. Basic Concept
+## 💡 2. Basic Concept
 A microprocessor acts as a programmable logic device that reads instructions from memory, accepts binary data as input, processes data according to those instructions, and provides results as output. 
 
 Imagine a head chef (the Microprocessor) in a kitchen (the Computer System). The chef reads recipes (Instructions) from a cookbook (Memory), gathers ingredients (Input Data) from the pantry (I/O devices), processes the ingredients by chopping and cooking (ALU operations), and finally serves the finished dish (Output Data) to the customer. The chef orchestrates the whole process using a set of rules and timing.
 
-## :pencil2: 3. Definition
+## ✏️ 3. Definition
 > **Microprocessor:** A microprocessor is a multipurpose, programmable, clock-driven, register-based electronic device that is built on a single integrated circuit (IC), which reads binary instructions from a storage device called memory, accepts binary data as input, processes data according to those instructions, and provides results as output.
 
 ## 4. Physical/Logical Meaning
@@ -255,7 +255,7 @@ Alter the normal sequential flow of execution.
 - `EI` / `DI`: Enable / Disable Interrupts.
 - `SIM` / `RIM`: Set / Read Interrupt Mask.
 
-## :mag: 9. Assembly Language Program Examples
+## 🔍 9. Assembly Language Program Examples
 
 ### Example 1: Addition of two 8-bit numbers
 **Problem:** Add two 8-bit numbers stored in 2000H and 2001H. Store the sum in 2002H and carry in 2003H.
@@ -335,7 +335,7 @@ HLT
 | **I/O Capability** | 256 I/O ports (8-bit address) | 65,536 I/O ports (16-bit address) |
 | **Multi-processing**| Not supported | Supported (Min/Max modes) |
 
-## :memo: 11. Key Formulas Summary
+## 📝 11. Key Formulas Summary
 
 > **Memory Size Calculation:**
 
@@ -351,7 +351,7 @@ $$ T = \frac{1}{\text{Clock Frequency}} $$
 > Example: An instruction takes 7 T-states at 2 MHz clock.
 > Execution Time = $7 \times \frac{1}{2 \times 10^6} = 3.5 \mu s$.
 
-## :bulb: 12. Common Mistakes / Exam Tips
+## 💡 12. Common Mistakes / Exam Tips
 
 > [!WARNING]
 > **Subtractions and the Carry Flag:** During `SUB` or `CMP`, the Carry Flag acts as a **Borrow Flag**. If $A < R$, a borrow is needed, so CY=1. If $A \geq R$, CY=0.
@@ -364,7 +364,7 @@ $$ T = \frac{1}{\text{Clock Frequency}} $$
 > 
 > **DAD Instruction:** `DAD B` adds BC to HL and stores the result in HL. It is the ONLY 16-bit arithmetic instruction that affects the Carry flag in 8085. It does not affect Z, S, P, AC.
 
-## :pencil: 13. Practice Problems
+## ✏️ 13. Practice Problems
 
 **Q1:** What will be the contents of the Accumulator and Carry Flag after the following sequence of instructions?
 ```assembly

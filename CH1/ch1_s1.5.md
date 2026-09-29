@@ -403,7 +403,7 @@ Similar to a triangular wave, but the rise time is very different from the fall 
 
 ---
 
-## :balance_scale: 7. Master Comparison Table
+## ⚖️ 7. Master Comparison Table
 
 | Parameter | Wien Bridge | Phase-Shift | Hartley | Colpitts | Crystal |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -416,7 +416,7 @@ Similar to a triangular wave, but the rise time is very different from the fall 
 
 ---
 
-## :star: 8. Section Summary & NEC Exam Prep
+## ⭐ 8. Section Summary & NEC Exam Prep
 
 ### Key Equations
 | Description | Formula | Conditions |

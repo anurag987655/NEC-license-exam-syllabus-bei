@@ -1,6 +1,6 @@
 ## Section Digital Signal Processing (AEiE0606)
 
-## :book: 1. Introduction
+## 📖 1. Introduction
 Digital Signal Processing (DSP) covers the manipulation of signals after they have been converted to a digital format. Key exam areas include z-transforms, DFT/FFT, and the design of digital filters (IIR and FIR).
 
 ## 2. The z-Transform
@@ -73,7 +73,7 @@ $$ h[n] = h_d[n] \cdot w[n] $$
 - **Hanning / Hamming**: Better sidelobe suppression, wider transition band.
 - **Blackman**: Very good sidelobe suppression, widest transition band.
 
-## :bulb: Common Mistakes / Exam Tips
+## 💡 Common Mistakes / Exam Tips
 
 > [!WARNING]
 > In DFT, index $k$ represents digital frequency $\omega_k = \frac{2\pi k}{N}$. Do not confuse it with analog frequency.
@@ -82,14 +82,14 @@ $$ h[n] = h_d[n] \cdot w[n] $$
 > Stability of causal IIR filter: **All poles inside $|z|=1$**.
 > FIR filter linear phase condition: $h[n]$ must be symmetric or anti-symmetric.
 
-## :memo: Quick Reference / Formula Summary
+## 📝 Quick Reference / Formula Summary
 
 > [!IMPORTANT]
 > - **z-transform**: $X(z) = \sum x[n]z^{-n}$
 > - **DFT**: $X[k] = \sum x[n] e^{-j 2\pi kn/N}$
 > - **FIR Windowing**: $h[n] = h_{ideal}[n] \cdot w[n]$
 
-## :pencil: Practice Problems
+## ✏️ Practice Problems
 1. **Problem**: Find the z-transform of $x[n] = a^n u[n]$ and its ROC.
    **Answer Sketch**: $X(z) = \sum_{n=0}^{\infty} a^n z^{-n} = \sum (a/z)^n = \frac{1}{1 - az^{-1}} = \frac{z}{z-a}$. ROC: $|z| > |a|$.
 2. **Problem**: A causal LTI system has transfer function $H(z) = \frac{1}{1 - 2z^{-1}}$. Is it stable?

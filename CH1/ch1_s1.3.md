@@ -147,7 +147,7 @@ $$K_c = \frac{V_m}{V_{rms}} = \frac{V_m}{V_m/\sqrt{2}} = \sqrt{2} \approx 1.414$
 
 ---
 
-## :star: 8. Relationships Summary Table
+## ⭐ 8. Relationships Summary Table
 
 | Quantity | Formula | Value for Sine Wave |
 |---|---|---|
@@ -267,7 +267,7 @@ $$P = 3 \times V_L \times \left(\frac{I_L}{\sqrt{3}}\right) \times \cos(\phi) = 
 
 ---
 
-## :star: 11. Section Summary
+## ⭐ 11. Section Summary
 
 ### Worked Numerical Problem - LEVEL 2
 **Problem:** A $400$ V (line-to-line), $50$ Hz, three-phase supply is connected to a balanced star-connected load. The phase current is $10$ A, lagging the phase voltage by $30^\circ$. Calculate the phase voltage, total active power, and total apparent power.

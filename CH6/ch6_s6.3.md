@@ -1,6 +1,6 @@
 ## Section Communication System (AEiE0603)
 
-## :book: 1. Introduction
+## 📖 1. Introduction
 Communication systems are designed to transmit information from a source to a destination reliably and efficiently. This section covers the foundational aspects of both analog and digital communication, focusing on signal representation, system bandwidth, signal distortion, and various modulation techniques (AM, FM, PM). This is a high-yield topic for the NEC exam.
 
 ## 2. Basic Building Blocks of Communication Systems
@@ -106,7 +106,7 @@ $$BW_{FM} \approx 2(\Delta f + f_m) = 2f_m(\beta + 1)$$
 
 ---
 
-## :mag: Worked Example
+## 🔍 Worked Example
 
 **Example 1**: An AM wave has a total power of 1000 Watts with a modulation index of 0.5. Calculate the carrier power and the power in each sideband.
 **Solution**:
@@ -118,7 +118,7 @@ Power in each sideband (USB or LSB) $= P_{SB} / 2 = 55.55$ Watts.
 
 ---
 
-## :bulb: Common Mistakes / Exam Tips
+## 💡 Common Mistakes / Exam Tips
 
 > [!WARNING]
 > - Confusing the formulas for AM power vs FM bandwidth. In AM, power depends on the modulation index. In FM, the total transmitted power is *constant* regardless of modulation.
@@ -131,7 +131,7 @@ Power in each sideband (USB or LSB) $= P_{SB} / 2 = 55.55$ Watts.
 
 ---
 
-## :memo: Quick Reference / Formula Summary
+## 📝 Quick Reference / Formula Summary
 
 > [!IMPORTANT]
 > - Distortionless System: $|H(f)| = K$, $\angle H(f) = -2\pi f t_d$
@@ -141,7 +141,7 @@ Power in each sideband (USB or LSB) $= P_{SB} / 2 = 55.55$ Watts.
 
 ---
 
-## :pencil: Practice Problems
+## ✏️ Practice Problems
 
 1. What is the Hilbert transform of $\cos(\omega_0 t)$?
    *Hint: The Hilbert transform delays all frequencies by $90^\circ$. $\cos(\omega_0 t - 90^\circ) = \sin(\omega_0 t)$.*

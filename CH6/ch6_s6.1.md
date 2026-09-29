@@ -1,9 +1,9 @@
 ## Section Electric Field and Magnetic Field (AEiE0601)
 
-## :book: 1. Introduction
+## 📖 1. Introduction
 Electromagnetics is the foundation of communication systems and electronic engineering. This section covers static electric and magnetic fields, their properties, interactions with matter, and the boundary conditions governing these fields across different media. A strong grasp of these fundamental concepts is crucial for the NEC exam, as they form the basis for understanding wave propagation and antennas.
 
-## :bulb: 2. Basic Concept
+## 💡 2. Basic Concept
 Electric and magnetic fields are spatial distributions of forces exerted by stationary and moving charges, respectively. 
 
 > [!NOTE] Definition
@@ -19,7 +19,7 @@ where $\varepsilon_0 \approx 8.854 \times 10^{-12}$ F/m is the permittivity of f
 $$\mathbf{D} = \varepsilon \mathbf{E}$$
 where $\varepsilon = \varepsilon_0 \varepsilon_r$ is the permittivity of the medium. Unit of $\mathbf{D}$ is $C/m^2$.
 
-## :mortar_board: 4. Significance of Divergence and Divergence Theorem
+## 🎓 4. Significance of Divergence and Divergence Theorem
 The divergence of a vector field represents the net outward flux per unit volume at a point.
 
 > [!NOTE] Definition
@@ -141,7 +141,7 @@ $$H_{t1} - H_{t2} = K$$
 
 ---
 
-## :mag: Worked Example
+## 🔍 Worked Example
 
 **Example 1**: Given the electric potential $V = 10x^2y + 5z$ Volts, find the electric field $\mathbf{E}$ at the point (1, 2, -1).
 **Solution**:
@@ -155,7 +155,7 @@ $\mathbf{E} = -20(1)(2) \mathbf{a}_x - 10(1)^2 \mathbf{a}_y - 5 \mathbf{a}_z = -
 
 ---
 
-## :bulb: Common Mistakes / Exam Tips
+## 💡 Common Mistakes / Exam Tips
 
 > [!WARNING]
 > - Mixing up permittivity ($\varepsilon$) and permeability ($\mu$). Permittivity is for electric fields, permeability is for magnetic fields.
@@ -168,7 +168,7 @@ $\mathbf{E} = -20(1)(2) \mathbf{a}_x - 10(1)^2 \mathbf{a}_y - 5 \mathbf{a}_z = -
 
 ---
 
-## :memo: Quick Reference / Formula Summary
+## 📝 Quick Reference / Formula Summary
 
 > [!IMPORTANT]
 > - **Divergence Theorem**: $\oint_S \mathbf{A} \cdot d\mathbf{S} = \int_v (\nabla \cdot \mathbf{A}) dv$
@@ -177,7 +177,7 @@ $\mathbf{E} = -20(1)(2) \mathbf{a}_x - 10(1)^2 \mathbf{a}_y - 5 \mathbf{a}_z = -
 
 ---
 
-## :pencil: Practice Problems
+## ✏️ Practice Problems
 
 1. Find the volume charge density $\rho_v$ if $\mathbf{D} = 2xy \mathbf{a}_x + x^2 \mathbf{a}_y + z \mathbf{a}_z$ $C/m^2$.
    *Hint: Use $\rho_v = \nabla \cdot \mathbf{D}$.*

@@ -1,9 +1,9 @@
 # Section 4.1: Control and Central Processing Units (ACtE0401)
 
-## :book: 1. Introduction
+## 📖 1. Introduction
 The Central Processing Unit (CPU) is the brain of any computer system, responsible for executing instructions and coordinating all other components. This section dives deep into the architecture, control mechanisms, instruction execution, and performance enhancements of the CPU. For the NEC exam, understanding the intricacies of control units, addressing modes, and pipelining is essential, as these dictate how a processor behaves and performs.
 
-## :bulb: 2. Basic Concept
+## 💡 2. Basic Concept
 At its core, a CPU fetches instructions from memory, decodes them to understand what needs to be done, fetches required operands, executes the operation, and stores the result back. The **Control Unit (CU)** is the conductor of this orchestra, sending timing and control signals to the Datapath (ALU and Registers).
 
 > [!NOTE] Definition
@@ -335,7 +335,7 @@ Flynn classified computer architectures based on the number of concurrent instru
 > Be prepared to identify real-world examples for Flynn's taxonomy. Modern desktop CPUs are MIMD, but they utilize SIMD instructions (like AVX) internally for media processing.
 
 ---
-## :pencil: Practice Problems
+## ✏️ Practice Problems
 
 1. **Question:** What is the effective address if the instruction is `LOAD 50(R2)` where R2 contains `2000`?
    *Answer:* Indexed addressing mode. EA = R2 + 50 = 2000 + 50 = 2050.

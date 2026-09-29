@@ -1,6 +1,6 @@
 # Section 4.5: Real-Time Operating and Control System (ACtE0405)
 
-## :book: 1. Introduction
+## 📖 1. Introduction
 The Real-Time Operating and Control System section covers the fundamental concepts of operating systems (OS), specifically tailored for embedded systems, real-time operating systems (RTOS), and the basics of control systems. These concepts are crucial for understanding how embedded devices manage hardware resources, schedule tasks to meet strict timing deadlines, and interface with the physical world through closed-loop and open-loop control mechanisms. 
 
 ---
@@ -68,7 +68,7 @@ Context switching is the process of storing the state (context) of the currently
 
 ---
 
-## :bulb: 4. Multiprocessing vs Multitasking
+## 💡 4. Multiprocessing vs Multitasking
 
 | Feature | Multiprocessing | Multitasking |
 |---------|-----------------|--------------|
@@ -200,7 +200,7 @@ $$ u(t) = K_p e(t) + K_i \int_{0}^{t} e(\tau) d\tau + K_d \frac{de(t)}{dt} $$
 
 ---
 
-## :mag: 10. Worked Examples
+## 🔍 10. Worked Examples
 
 **Example 1: Rate Monotonic Scheduling**
 Given two tasks $T_1$ (computation $C_1=2$, period $T_1=5$) and $T_2$ (computation $C_2=4$, period $T_2=15$). Are they schedulable using RMS?
@@ -220,7 +220,7 @@ $$ C(s) = \frac{U(s)}{E(s)} = K_p + \frac{K_i}{s} + K_d s = \frac{K_d s^2 + K_p 
 
 ---
 
-## :bulb: 11. Common Mistakes / Exam Tips
+## 💡 11. Common Mistakes / Exam Tips
 > [!WARNING]
 > **Priority Inversion vs Deadlock**: Do not confuse these. Priority inversion happens when a high-priority task waits on a low-priority task. Deadlock happens when two or more tasks are stuck waiting for each other indefinitely.
 > 
@@ -230,7 +230,7 @@ $$ C(s) = \frac{U(s)}{E(s)} = K_p + \frac{K_i}{s} + K_d s = \frac{K_d s^2 + K_p 
 
 ---
 
-## :pencil: 12. Practice Problems
+## ✏️ 12. Practice Problems
 
 **Q1.** Which scheduling algorithm suffers from the convoy effect?
 A. Round Robin

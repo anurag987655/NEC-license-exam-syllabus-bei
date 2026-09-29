@@ -4,7 +4,7 @@
 
 ---
 
-## :pushpin: Prerequisite Note
+## 📌 Prerequisite Note
 
 This section covers the fundamental building blocks of all digital systems. Digital logic is the core of modern electronics, computers, and telecommunications. The NEC exam heavily tests binary arithmetic, logic gate universality, Boolean simplification, and Karnaugh Map techniques. Pay special attention to 2's complement arithmetic and K-map grouping rules, as these are very common sources of errors for candidates.
 
@@ -12,11 +12,11 @@ This section covers the fundamental building blocks of all digital systems. Digi
 
 # 2.1.1 NUMBER SYSTEMS
 
-## :book: Introduction
+## 📖 Introduction
 
 Digital electronics operates on discrete signal levels, inherently represented by binary numbers (0s and 1s). However, to interface with the real world, human-readable data (decimal), and memory architectures (hexadecimal), an engineer must have a solid grasp of various number systems and the ability to rapidly convert among them.
 
-## :warning: Why Is It Important?
+## ⚠️ Why Is It Important?
 
 An engineer needs a thorough understanding of number systems because:
 - **Binary (Base-2)** is the native language of all digital hardware, logic gates, and microprocessors.
@@ -25,7 +25,7 @@ An engineer needs a thorough understanding of number systems because:
 - **BCD (Binary Coded Decimal)** is essential for interfacing digital systems with decimal displays (e.g., seven-segment displays) without requiring complex binary-to-decimal conversion circuits.
 - **Gray Code** minimizes errors in electro-mechanical position sensors (like rotary encoders) by changing only one bit at a time during transitions.
 
-## :bulb: Basic Concept
+## 💡 Basic Concept
 
 A number system of base (radix) $r$ uses exactly $r$ distinct symbols. The value of a number is determined by the position of its digits. The positional weight of the $i$-th digit (moving away from the radix point) is $r^i$. 
 
@@ -39,7 +39,7 @@ A number system of base (radix) $r$ uses exactly $r$ distinct symbols. The value
 > [!NOTE]
 > In Hexadecimal, the letters A through F represent decimal values 10 through 15 respectively: $A=10, B=11, C=12, D=13, E=14, F=15$.
 
-## :pencil2: Definition
+## ✏️ Definition
 
 > **Radix (Base)** is the number of unique digits, including zero, used to represent numbers in a positional numeral system.
 
@@ -47,7 +47,7 @@ A number system of base (radix) $r$ uses exactly $r$ distinct symbols. The value
 
 Think of a number system as a language. The same quantity (say, fifteen apples) can be described as "15" in decimal, "1111" in binary, "17" in octal, and "F" in hexadecimal. The underlying quantity is identical; only the representation changes to suit the "hardware" interpreting it.
 
-## :chart_with_upwards_trend: Mathematical Formulation
+## 📈 Mathematical Formulation
 
 For a number in base $r$ written as $(d_n d_{n-1} \dots d_1 d_0 . d_{-1} d_{-2} \dots d_{-m})_r$, its equivalent decimal value is calculated as:
 
@@ -171,7 +171,7 @@ $G_0 = B_1 \oplus B_0 = 1 \oplus 1 = 0$
 
 # 2.1.2 BINARY ARITHMETIC
 
-## :book: Introduction
+## 📖 Introduction
 
 Binary arithmetic forms the core of the Arithmetic Logic Unit (ALU) in microprocessors. Understanding addition, subtraction, and the representation of negative numbers is fundamental to computer architecture. Computers generally do not use subtractors; they perform subtraction by adding the complement of a number.
 
@@ -184,7 +184,7 @@ Rules for binary addition are identical to decimal, just modulo 2:
 - $1 + 1 = 0 \text{ (with a carry of } 1)$
 - $1 + 1 + 1 = 1 \text{ (with a carry of } 1)$
 
-## :gear: Binary Subtraction (Borrow Method)
+## ⚙️ Binary Subtraction (Borrow Method)
 
 Rules for basic borrow method:
 - $0 - 0 = 0$
@@ -254,7 +254,7 @@ In signed arithmetic, an **overflow** occurs when the addition of two numbers of
 
 # 2.1.3 LOGIC LEVELS
 
-## :book: Introduction
+## 📖 Introduction
 
 In the real physical world, signals are continuous voltages or currents. Digital circuits abstract these continuous analog values into discrete ranges representing logic $0$ and logic $1$. These ranges are called logic levels.
 
@@ -280,7 +280,7 @@ For a logic gate to function reliably, $V_{OH}$ must be strictly greater than $V
 **High-Level Noise Margin:** $NM_H = V_{OH} - V_{IH}$
 **Low-Level Noise Margin:** $NM_L = V_{IL} - V_{OL}$
 
-## :balance_scale: Logic Families Comparison
+## ⚖️ Logic Families Comparison
 
 | Characteristic | TTL (Transistor-Transistor Logic) | CMOS (Complementary MOS) |
 |----------------|-----------------------------------|--------------------------|
@@ -297,7 +297,7 @@ For a logic gate to function reliably, $V_{OH}$ must be strictly greater than $V
 
 # 2.1.4 LOGIC GATES
 
-## :book: Introduction
+## 📖 Introduction
 
 Logic gates are the physical hardware implementations of Boolean functions. They are the fundamental building blocks of all digital electronic systems. 
 
@@ -407,11 +407,11 @@ NAND and NOR gates are termed **Universal Gates** because any boolean logic func
 
 # 2.1.5 BOOLEAN ALGEBRA
 
-## :book: Introduction
+## 📖 Introduction
 
 Boolean algebra provides the mathematical framework for analyzing and simplifying digital logic circuits. By applying mathematical rules to logic variables, we can reduce complex circuits to their simplest forms, saving hardware costs and reducing delay.
 
-## :mortar_board: Postulates and Basic Theorems
+## 🎓 Postulates and Basic Theorems
 
 Boolean algebra variables can only take values of $0$ or $1$.
 
@@ -430,7 +430,7 @@ Boolean algebra variables can only take values of $0$ or $1$.
 > [!IMPORTANT]
 > The distributive law in Boolean algebra works both ways! In standard algebra, $A + (B \cdot C) \neq (A + B) \cdot (A + C)$, but in Boolean algebra, it is a perfectly valid and frequently used identity.
 
-## :mortar_board: De Morgan's Theorems
+## 🎓 De Morgan's Theorems
 
 De Morgan's Theorems are the most critical tool for converting between AND, OR, NAND, and NOR logic.
 
@@ -484,7 +484,7 @@ The consensus term is completely redundant.
 
 # 2.1.6 SUM-OF-PRODUCTS (SOP) METHOD
 
-## :book: Introduction
+## 📖 Introduction
 
 Sum-of-Products (SOP) is a standard method of expressing Boolean logic where product terms (variables joined by AND) are summed (joined by OR) together. SOP maps directly to a two-level AND-OR logic circuit.
 
@@ -519,7 +519,7 @@ To extract an SOP expression from a truth table:
 
 # 2.1.7 PRODUCT-OF-SUMS (POS) METHOD
 
-## :book: Introduction
+## 📖 Introduction
 
 Product-of-Sums (POS) is the dual of SOP. It expresses logic as sum terms (variables joined by OR) multiplied (joined by AND) together. POS maps directly to a two-level OR-AND logic circuit.
 
@@ -555,7 +555,7 @@ Therefore, $F(A,B,C) = \prod M(0,2,4,6)$.
 
 # 2.1.8 KARNAUGH MAPS (K-MAPS)
 
-## :book: Introduction
+## 📖 Introduction
 
 Algebraic simplification is highly prone to human error and does not guarantee that a minimal solution will be found. The Karnaugh Map (K-map) is a graphical technique providing a systematic, visual method for Boolean minimization up to 4 or 5 variables.
 
@@ -585,7 +585,7 @@ In many real-world systems, certain input combinations will never occur (e.g., i
 - You can treat it as a $0$ if it doesn't help.
 - You NEVER form a group entirely consisting of 'X's.
 
-## :mag: Worked K-Map Examples
+## 🔍 Worked K-Map Examples
 
 **Worked Example 2.10: 3-Variable K-Map (SOP)**
 **Given:** $F(A,B,C) = \sum m(0, 2, 4, 6)$
